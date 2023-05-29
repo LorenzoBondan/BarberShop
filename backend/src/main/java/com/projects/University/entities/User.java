@@ -3,10 +3,12 @@ package com.projects.University.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -45,6 +48,12 @@ public class User implements UserDetails, Serializable{
 				inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
 	private Set<Role> roles = new HashSet<>();
+	
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Appointment> clientAppointments;
+
+    @OneToMany(mappedBy = "barber", cascade = CascadeType.ALL)
+    private List<Appointment> barberAppointments;
 	
 	public User() {
 	}
@@ -101,6 +110,14 @@ public class User implements UserDetails, Serializable{
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public List<Appointment> getClientAppointments() {
+		return clientAppointments;
+	}
+
+	public List<Appointment> getBarberAppointments() {
+		return barberAppointments;
 	}
 
 	@Override
