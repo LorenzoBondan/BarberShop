@@ -1,6 +1,6 @@
 package com.projects.University.services;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,15 +58,14 @@ public class UserService implements UserDetailsService {
 	public UserDTO findById(Long id) {
 		Optional<User> obj = repository.findById(id);
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
-		return new UserDTO(entity, entity.getRoles());
+		return new UserDTO(entity);
 	}
-	
 	
 	@Transactional(readOnly = true)
 	public UserDTO findByEmail(String email) {
 		Optional<User> obj = Optional.ofNullable(repository.findByEmail(email));
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
-		return new UserDTO(entity, entity.getRoles());
+		return new UserDTO(entity);
 	}
 
 	@Transactional
@@ -132,9 +131,9 @@ public class UserService implements UserDetailsService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<LocalDate> findReservedDatesForBarberOnDate(Long barberId, LocalDate date) {
+	public List<LocalDateTime> findReservedDatesForBarberOnDate(Long barberId, LocalDateTime startTime, LocalDateTime endTime) {
 		User user = repository.getOne(barberId);
-		List<LocalDate> list = appointmentRepository.findReservedDatesByBarberAndDate(user, date);
+		List<LocalDateTime> list = appointmentRepository.findReservedDatesByBarberAndDate(user, startTime, endTime);
 		return list;
 	}
 	

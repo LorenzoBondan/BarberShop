@@ -2,22 +2,16 @@ package com.projects.University.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.projects.University.repositories.AppointmentRepository;
 
 @Entity
 @Table(name = "tb_appointment")
@@ -28,7 +22,8 @@ public class Appointment implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDateTime dateTime;
 	
 	@ManyToOne
@@ -98,16 +93,6 @@ public class Appointment implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	
-	@Autowired
-    private AppointmentRepository repository;
-	
-	@PrePersist
-    private void validateReservation() {
 
-        List<Appointment> existingAppointments = repository.findByDateTime(dateTime);
-        if (!existingAppointments.isEmpty()) {
-            throw new IllegalArgumentException("Horário já reservado. Escolha outro horário.");
-        }
-    }
 
 }

@@ -1,7 +1,7 @@
 package com.projects.University.resources;
 
 import java.net.URI;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -71,8 +71,8 @@ public class UserResource {
 	}
 	
 	@GetMapping(value = "/{id}/{date}") 
-	public ResponseEntity<List<LocalDate>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDate date) {
-		List<LocalDate> list = service.findReservedDatesForBarberOnDate(id, date);
+	public ResponseEntity<List<LocalDateTime>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDateTime startTime, @PathVariable LocalDateTime endTime) {
+		List<LocalDateTime> list = service.findReservedDatesForBarberOnDate(id, startTime, endTime);
 		return ResponseEntity.ok().body(list);
 	}
 }
