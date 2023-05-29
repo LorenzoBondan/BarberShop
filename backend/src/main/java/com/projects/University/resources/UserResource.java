@@ -1,6 +1,8 @@
 package com.projects.University.resources;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -62,12 +64,15 @@ public class UserResource {
 		return ResponseEntity.ok().body(newDto);
 	}
 	
-	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<UserDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	
+	@GetMapping(value = "/{id}/{date}") 
+	public ResponseEntity<List<LocalDate>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDate date) {
+		List<LocalDate> list = service.findReservedDatesForBarberOnDate(id, date);
+		return ResponseEntity.ok().body(list);
+	}
 }

@@ -1,5 +1,7 @@
 package com.projects.University.services;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,6 +25,7 @@ import com.projects.University.dto.UserInsertDTO;
 import com.projects.University.dto.UserUpdateDTO;
 import com.projects.University.entities.Role;
 import com.projects.University.entities.User;
+import com.projects.University.repositories.AppointmentRepository;
 import com.projects.University.repositories.RoleRepository;
 import com.projects.University.repositories.UserRepository;
 import com.projects.University.services.exceptions.DataBaseException;
@@ -41,6 +44,9 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private AppointmentRepository appointmentRepository;
 
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(Pageable pageable) {
@@ -125,5 +131,11 @@ public class UserService implements UserDetailsService {
 		return user;
 	}
 	
+	@Transactional(readOnly = true)
+	public List<LocalDate> findReservedDatesForBarberOnDate(Long barberId, LocalDate date) {
+		User user = repository.getOne(barberId);
+		List<LocalDate> list = appointmentRepository.findReservedDatesByBarberAndDate(user, date);
+		return list;
+	}
 	
 }
