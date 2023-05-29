@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import com.projects.University.entities.Role;
 import com.projects.University.entities.User;
 
 public class UserDTO implements Serializable {
@@ -27,10 +25,13 @@ public class UserDTO implements Serializable {
 	private String imgUrl;
 	
 	private List<RoleDTO> roles = new ArrayList<>();
+	
+	private List<AppointmentDTO> clientAppointments = new ArrayList<>();
+	
+	private List<AppointmentDTO> barberAppointments = new ArrayList<>();
 	  
 	public UserDTO() {}
 
-	
 	public UserDTO(Long id, String name, String email, String password, Long favoriteTeamId, String imgUrl) {
 		super();
 		this.id = id;
@@ -39,7 +40,6 @@ public class UserDTO implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 	
-	// construtor implantado na classe UserService
 	public UserDTO(User entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
@@ -47,12 +47,8 @@ public class UserDTO implements Serializable {
 		this.imgUrl = entity.getImgUrl();
 
 		entity.getRoles().forEach(rol -> this.roles.add(new RoleDTO(rol)));
-
-	}
-
-	public UserDTO(User entity, Set<Role> roles) {
-		this(entity); 
-		roles.forEach(rol -> this.roles.add(new RoleDTO(rol))); 
+		entity.getBarberAppointments().forEach(b -> this.barberAppointments.add(new AppointmentDTO(b)));
+		entity.getClientAppointments().forEach(b -> this.clientAppointments.add(new AppointmentDTO(b)));
 	}
 
 	public Long getId() {
@@ -67,7 +63,6 @@ public class UserDTO implements Serializable {
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -95,6 +90,13 @@ public class UserDTO implements Serializable {
 		return roles;
 	}
 
+	public List<AppointmentDTO> getClientAppointments() {
+		return clientAppointments;
+	}
+
+	public List<AppointmentDTO> getBarberAppointments() {
+		return barberAppointments;
+	}
 
 	@Override
 	public int hashCode() {
