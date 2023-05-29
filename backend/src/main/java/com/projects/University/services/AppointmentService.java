@@ -41,6 +41,7 @@ public class AppointmentService {
 	
 	@Transactional
 	public AppointmentDTO insert(AppointmentDTO dto) {
+		
 		Appointment entity = new Appointment();
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);

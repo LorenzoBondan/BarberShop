@@ -1,6 +1,5 @@
 package com.projects.University.repositories;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import com.projects.University.entities.User;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
 
-	List<Appointment> findByDateTime(Instant dateTime);
+	List<Appointment> findByDateTime(LocalDateTime dateTime);
 	
 	@Query("SELECT DISTINCT a.dateTime FROM Appointment a WHERE a.barber = :barber AND a.dateTime >= :startDateTime AND a.dateTime < :endDateTime")
 	List<LocalDateTime> findReservedDatesByBarberAndDate(@Param("barber") User barber, @Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
