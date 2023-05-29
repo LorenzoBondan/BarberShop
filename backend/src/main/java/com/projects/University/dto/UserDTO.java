@@ -26,9 +26,9 @@ public class UserDTO implements Serializable {
 	
 	private List<RoleDTO> roles = new ArrayList<>();
 	
-	private List<AppointmentDTO> clientAppointments = new ArrayList<>();
+	private List<Long> clientAppointmentsId = new ArrayList<>();
 	
-	private List<AppointmentDTO> barberAppointments = new ArrayList<>();
+	private List<Long> barberAppointmentsId = new ArrayList<>();
 	  
 	public UserDTO() {}
 
@@ -47,8 +47,8 @@ public class UserDTO implements Serializable {
 		this.imgUrl = entity.getImgUrl();
 
 		entity.getRoles().forEach(rol -> this.roles.add(new RoleDTO(rol)));
-		entity.getBarberAppointments().forEach(b -> this.barberAppointments.add(new AppointmentDTO(b)));
-		entity.getClientAppointments().forEach(b -> this.clientAppointments.add(new AppointmentDTO(b)));
+		entity.getBarberAppointments().forEach(b -> this.barberAppointmentsId.add(b.getId()));
+		entity.getClientAppointments().forEach(b -> this.clientAppointmentsId.add(b.getId()));
 	}
 
 	public Long getId() {
@@ -90,12 +90,12 @@ public class UserDTO implements Serializable {
 		return roles;
 	}
 
-	public List<AppointmentDTO> getClientAppointments() {
-		return clientAppointments;
+	public List<Long> getClientAppointmentsId() {
+		return clientAppointmentsId;
 	}
 
-	public List<AppointmentDTO> getBarberAppointments() {
-		return barberAppointments;
+	public List<Long> getBarberAppointmentsId() {
+		return barberAppointmentsId;
 	}
 
 	@Override

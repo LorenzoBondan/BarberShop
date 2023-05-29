@@ -23,6 +23,7 @@ import com.projects.University.dto.RoleDTO;
 import com.projects.University.dto.UserDTO;
 import com.projects.University.dto.UserInsertDTO;
 import com.projects.University.dto.UserUpdateDTO;
+import com.projects.University.entities.Appointment;
 import com.projects.University.entities.Role;
 import com.projects.University.entities.User;
 import com.projects.University.repositories.AppointmentRepository;
@@ -114,6 +115,16 @@ public class UserService implements UserDetailsService {
 		for (RoleDTO rolDto : dto.getRoles()) {
 			Role role = roleRepository.getOne(rolDto.getId());
 			entity.getRoles().add(role);
+		}
+		
+		for (Long clientAppointmentId : dto.getClientAppointmentsId()) {
+			Appointment appointment = appointmentRepository.getOne(clientAppointmentId);
+			entity.getClientAppointments().add(appointment);
+		}
+		
+		for (Long barberAppointmentId : dto.getBarberAppointmentsId()) {
+			Appointment appointment = appointmentRepository.getOne(barberAppointmentId);
+			entity.getBarberAppointments().add(appointment);
 		}
 
 	}

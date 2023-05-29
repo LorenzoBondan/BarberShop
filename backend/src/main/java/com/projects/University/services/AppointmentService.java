@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.projects.University.dto.AppointmentDTO;
 import com.projects.University.entities.Appointment;
 import com.projects.University.repositories.AppointmentRepository;
+import com.projects.University.repositories.UserRepository;
 import com.projects.University.services.exceptions.DataBaseException;
 import com.projects.University.services.exceptions.ResourceNotFoundException;
 
@@ -21,6 +22,9 @@ public class AppointmentService {
 	
 	@Autowired
 	private AppointmentRepository repository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<AppointmentDTO> findAllPaged(Pageable pageable) {
@@ -57,8 +61,8 @@ public class AppointmentService {
 	
 	private void copyDtoToEntity(AppointmentDTO dto, Appointment entity) {
 		entity.setDateTime(dto.getDateTime());
-		entity.setBarber(dto.getBarber());
-		entity.setClient(dto.getClient());
+		entity.setBarber(userRepository.getOne(dto.getBarber().getId()));
+		entity.setClient(userRepository.getOne(dto.getClient().getId()));
 	}
 
 }

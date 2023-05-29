@@ -20,4 +20,5 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (5, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (6, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (6, 2);
 
-INSERT INTO tb_appointment (barber_id, client_id, date_Time) VALUES (3,6,TIMESTAMP WITH TIME ZONE '2020-07-14T10:30:00Z');
+INSERT INTO tb_appointment (barber_id, client_id, date_Time) VALUES (3, 6, TIMESTAMP WITH TIME ZONE '2020-07-14T10:30:00Z');
+INSERT INTO tb_appointment (barber_id, client_id, date_Time) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-07-14T10:30:00Z');

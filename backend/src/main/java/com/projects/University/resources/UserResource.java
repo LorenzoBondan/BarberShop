@@ -70,7 +70,7 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping(value = "/{id}/{date}") 
+	@GetMapping(value = "/{id}/{startTime}/{endTime}") 
 	public ResponseEntity<List<LocalDateTime>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDateTime startTime, @PathVariable LocalDateTime endTime) {
 		List<LocalDateTime> list = service.findReservedDatesForBarberOnDate(id, startTime, endTime);
 		return ResponseEntity.ok().body(list);

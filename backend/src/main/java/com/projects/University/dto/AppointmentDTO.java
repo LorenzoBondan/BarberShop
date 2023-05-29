@@ -7,7 +7,6 @@ import java.util.Objects;
 import javax.validation.constraints.NotBlank;
 
 import com.projects.University.entities.Appointment;
-import com.projects.University.entities.User;
 
 public class AppointmentDTO implements Serializable {
 
@@ -17,13 +16,13 @@ public class AppointmentDTO implements Serializable {
 	@NotBlank(message = "Campo obrigatório")
 	private LocalDateTime dateTime;
 	@NotBlank(message = "Campo obrigatório")
-	private User barber;
+	private UserDTO barber;
 	@NotBlank(message = "Campo obrigatório")
-	private User client;
+	private UserDTO client;
 	
 	public AppointmentDTO() {}
 	
-	public AppointmentDTO(Long id, LocalDateTime dateTime, User barber, User client) {
+	public AppointmentDTO(Long id, LocalDateTime dateTime, UserDTO barber, UserDTO client) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
@@ -35,8 +34,8 @@ public class AppointmentDTO implements Serializable {
 		super();
 		this.id = entity.getId();
 		this.dateTime = entity.getDateTime();
-		this.barber = entity.getBarber();
-		this.client = entity.getClient();
+		this.barber = new UserDTO(entity.getBarber());
+		this.client = new UserDTO(entity.getClient());
 	}
 
 	public Long getId() {
@@ -55,19 +54,19 @@ public class AppointmentDTO implements Serializable {
 		this.dateTime = dateTime;
 	}
 
-	public User getBarber() {
+	public UserDTO getBarber() {
 		return barber;
 	}
 
-	public void setBarber(User barber) {
+	public void setBarber(UserDTO barber) {
 		this.barber = barber;
 	}
 
-	public User getClient() {
+	public UserDTO getClient() {
 		return client;
 	}
 
-	public void setClient(User client) {
+	public void setClient(UserDTO client) {
 		this.client = client;
 	}
 
