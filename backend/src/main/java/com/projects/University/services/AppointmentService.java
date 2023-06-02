@@ -1,5 +1,7 @@
 package com.projects.University.services;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +43,9 @@ public class AppointmentService {
 	
 	@Transactional
 	public AppointmentDTO insert(AppointmentDTO dto) {
-		
 		Appointment entity = new Appointment();
 		copyDtoToEntity(dto, entity);
-		entity = repository.save(entity);
+		saveAppointment(entity);
 		return new AppointmentDTO(entity);
 	}
 	
@@ -65,5 +66,17 @@ public class AppointmentService {
 		entity.setBarber(userRepository.getOne(dto.getBarber().getId()));
 		entity.setClient(userRepository.getOne(dto.getClient().getId()));
 	}
+	
+	 public void saveAppointment(Appointment appointment) {
+	     validateReservation(appointment.getDateTime());
+	     repository.save(appointment);
+	 }
+	    
+	 private void validateReservation(LocalDateTime dateTime) {
+	     List<Appointment> existingAppointments = repository.findByDateTime(dateTime);
+	     if (!existingAppointments.isEmpty()) {
+	    	 throw new IllegalArgumentException("Horário já reservado. Escolha outro horário.");
+	     }
+	 }
 
 }
