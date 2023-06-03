@@ -7,6 +7,7 @@ import { requestBackendLogin } from 'util/requests';
 import { getAuthData, saveAuthData } from 'util/storage';
 import logo from 'assets/images/logo.png';
 import './styles.css';
+import { toast } from 'react-toastify';
 
 type FormData = {
     username: string,
@@ -20,7 +21,7 @@ type LocationState = {
 const Login = () => {
 
     const location = useLocation<LocationState>();
-    const {from} = location.state || { from: { pathname: '/feed'}};
+    const {from} = location.state || { from: { pathname: '/'}};
 
     const { setAuthContextData } = useContext(AuthContext);
 
@@ -48,7 +49,7 @@ const Login = () => {
 
             history.replace(from);
 
-            //toast.info("Welcome!");
+            toast.info("Welcome!");
         })
         .catch(error => {
             setHasError(true);
