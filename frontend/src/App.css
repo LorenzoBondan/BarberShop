@@ -1,22 +1,8 @@
-@font-face {
-    font-family: Free Sans;
-    src: url('./assets/fonts/FreeSans.ttf');
-    font-weight: 400;
-}
-@font-face {
-    font-family: Free Sans;
-    src: url('./assets/fonts/FreeSansBold.ttf');
-    font-weight: 700;
-}
-@font-face {
-    font-family: Nimbus Sans;
-    src: url('./assets/fonts/NimbusSans.otf');
-    font-weight: 700;
-}
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Tajawal:wght@400;700&display=swap');
 
 /* a fonte de todo o projeto é Open Sans */
 *, *::before, *::after{
-    font-family: 'Nimbus Sans', sans-serif;
+    font-family: 'Tajawal', sans-serif;
     margin-bottom: 0;
     padding: 0;
     box-sizing: border-box;

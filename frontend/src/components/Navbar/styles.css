@@ -1,0 +1,117 @@
+.main-nav{
+    padding : 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 80px;
+}
+
+.nav-logo-text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-logo-text h4 {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+    color: #fff;
+    font-family: 'Dancing Script';
+}
+
+.nav-logo-text h4:hover {
+    color: #3896E8;
+}
+
+.navbar-brand img{
+    height: 50px;
+}
+
+.main-menu {
+    display: flex;
+    font-size: 20px;
+    width: 420px; /* tamanho do início do home até o final do admin */
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.main-menu a, .main-menu i {
+    color:#fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+li a:hover{
+    color: #3896E8;
+}
+
+.main-menu a.active {
+    color: #3175A3;
+    font-weight: bold;
+}
+
+.active svg{
+    color:#3175A3;
+}
+
+.nav-login-logout {
+    display: none;
+}
+
+.nav-login-logout button {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.nav-login-logout a {
+    margin-right: 10px;
+}
+
+.nav-username {
+    display: none;
+}
+
+.nav-login-logout a {
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 8px 14px;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+}
+
+.nav-login-logout a:hover{
+    color: #3896E8;
+}
+
+@media(min-width:576px){
+    .nav-logo-text h4 {
+        font-size: 2rem;
+    }
+}
+
+@media(min-width:768px){
+
+    .nav-login-logout {
+        display: unset;
+        color: white;
+        margin-right: 20px;
+    }
+}
+
+@media(min-width:992px){
+    .nav-login-logout {
+        margin-right: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .nav-username {
+        display: unset;
+        margin-right: 20px;
+    }
+}
