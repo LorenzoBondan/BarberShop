@@ -100,17 +100,9 @@ const Navbar = () => {
 
             <div className='nav-login-logout'>
                 { authContextData.authenticated ? (
-                    <>
-                    <span className='nav-username'>{authContextData.tokenData?.user_name}</span>
-                    <Link to="/profile">
-                        <button className="btn btn-primary"> 
-                            MY PROFILE
-                        </button>
-                    </Link>
                     <a href="#logout" onClick={handleLogoutClick}>LOGOUT</a>
-                    </>
                     ) : (
-                        <Link to="/admin/auth">LOGIN</Link>
+                        <Link to="/auth">LOGIN</Link>
                     )
                 }
             </div>

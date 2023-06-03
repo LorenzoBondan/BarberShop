@@ -1,5 +1,6 @@
 
 import Navbar from "components/Navbar";
+import Auth from "pages/Auth";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 
 import history from "util/history";
@@ -30,9 +31,9 @@ const Routes = () => {
 
 
 
-                <Redirect from='/admin/auth' to='/admin/auth/login' exact />
-                <Route path="/admin/auth">
-
+                <Redirect from='/auth' to='/auth/login' exact />
+                <Route path="/auth">
+                    <Auth/>
                 </Route>
 
                 <Redirect from="/admin" to="/admin/teams" exact />
