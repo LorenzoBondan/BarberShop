@@ -16,6 +16,8 @@ const RegisterForm = () => {
         
         formData.roles = [ {id:1, authority:"ROLE_CLIENT"} ]; 
         formData.imgUrl = "https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg";
+        formData.barberAppointmentsId = [];
+        formData.clientAppointmentsId = [];
 
         const params : AxiosRequestConfig = {
             method: "POST",

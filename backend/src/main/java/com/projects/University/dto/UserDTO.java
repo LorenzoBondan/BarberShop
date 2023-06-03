@@ -8,6 +8,8 @@ import java.util.Objects;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.lang.Nullable;
+
 import com.projects.University.entities.User;
 
 public class UserDTO implements Serializable {

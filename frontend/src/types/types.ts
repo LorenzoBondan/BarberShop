@@ -17,7 +17,8 @@ export type User = {
     password: string;
     imgUrl: string;
     roles : Role[];
-    appointments : Appointment[];
+    clientAppointmentsId : number[] | null;
+    barberAppointmentsId : number[] | null;
 }
 
 export type Role = {

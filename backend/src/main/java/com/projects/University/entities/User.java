@@ -1,6 +1,7 @@
 package com.projects.University.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -50,10 +51,10 @@ public class User implements UserDetails, Serializable{
 	private Set<Role> roles = new HashSet<>();
 	
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Appointment> clientAppointments;
+    private List<Appointment> clientAppointments = new ArrayList<>();
 
     @OneToMany(mappedBy = "barber", cascade = CascadeType.ALL)
-    private List<Appointment> barberAppointments;
+    private List<Appointment> barberAppointments = new ArrayList<>();
 	
 	public User() {
 	}
