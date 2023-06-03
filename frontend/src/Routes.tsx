@@ -1,6 +1,7 @@
 
 import Navbar from "components/Navbar";
 import Auth from "pages/Auth";
+import Home from "pages/Home";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 
 import history from "util/history";
@@ -14,7 +15,7 @@ const Routes = () => {
             <Switch>
 
                 <Route path="/" exact>
-
+                    <Home/>
                 </Route>
 
                 <Route path="/teams" exact>

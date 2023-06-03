@@ -31,7 +31,7 @@
 .main-menu {
     display: flex;
     font-size: 20px;
-    width: 420px; /* tamanho do início do home até o final do admin */
+    width: 500px; /* tamanho do início do home até o final do admin */
     justify-content: space-between;
     margin-right: 10px;
 }

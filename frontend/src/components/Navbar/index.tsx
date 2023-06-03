@@ -63,7 +63,7 @@ const Navbar = () => {
             </button>
 
             <div className="collapse navbar-collapse" id="soccerleague-navbar">
-                <ul className='navbar-nav offset-md-8 main-menu'>
+                <ul className='navbar-nav offset-md-4 main-menu'>
 
                     {hasAnyRoles(["ROLE_ADMIN"]) && (
                         <li>
