@@ -1,0 +1,43 @@
+.barber-card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    
+}
+
+.barber-card-first-container{
+    border-bottom: 1px solid silver;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.barber-card-first-container h3, .barber-card-third-container h3{
+    color: #FFDC8D;
+    font-weight: 700;
+    font-family: 'Dancing Script';
+    text-shadow: 1px 1px 1px black;
+}
+
+.barber-card-second-container{
+    padding: 0 10px;
+}
+
+.barber-card-second-container img{
+    height: 270px;
+    width: 270px;
+    border-radius: 50%;
+    border: 3px solid silver
+}
+
+.barber-card-third-container{
+    border-top: 1px solid silver;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+}
