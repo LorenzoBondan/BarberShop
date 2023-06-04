@@ -63,6 +63,12 @@ public class UserService implements UserDetailsService {
 	}
 	
 	@Transactional(readOnly = true)
+	public Page<UserDTO> findBarbers(Pageable pageable) {
+		Page<User> list = repository.findBarbers(pageable);
+		return list.map(x -> new UserDTO(x));
+	}
+	
+	@Transactional(readOnly = true)
 	public UserDTO findByEmail(String email) {
 		Optional<User> obj = Optional.ofNullable(repository.findByEmail(email));
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
