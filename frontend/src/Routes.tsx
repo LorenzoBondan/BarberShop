@@ -1,4 +1,5 @@
 
+import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
@@ -50,7 +51,7 @@ const Routes = () => {
 
             </Switch>
 
-
+            <Footer/>
         </Router>
     );
 }
