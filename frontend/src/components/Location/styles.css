@@ -1,0 +1,39 @@
+.location-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.location-container h1{
+    color: black;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px silver;
+    margin-bottom: 20px;
+}
+
+.location-adress-container{
+    padding-bottom: 5px;
+    border-bottom: 2px solid darkgray;
+    margin-bottom: 10px;
+}
+
+.location-adress-container h4{
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    color: darkgray;
+}
+
+.location-map-container{
+    width: 700px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.location-container img{
+    height: 40px;
+}

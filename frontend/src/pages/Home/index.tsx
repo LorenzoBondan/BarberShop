@@ -2,6 +2,7 @@
 import Banner from 'components/Banner';
 import './styles.css';
 import Barbers from 'components/Barbers';
+import Location from 'components/Location';
 
 const Home = () => {
     return(
@@ -13,7 +14,7 @@ const Home = () => {
                 <Barbers/>
             </div>
             <div className='home-container-location'>
-                How to get here?
+                <Location/>
             </div>
         </div>
     );
