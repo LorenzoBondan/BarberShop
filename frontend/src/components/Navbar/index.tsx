@@ -83,7 +83,7 @@ const Navbar = () => {
 
                     {hasAnyRoles(["ROLE_CLIENT"]) && (
                         <li>
-                            <NavLink to="/create" activeClassName='active'>
+                            <NavLink to="/newappointment" activeClassName='active'>
                                 New Appointment
                             </NavLink>
                         </li>

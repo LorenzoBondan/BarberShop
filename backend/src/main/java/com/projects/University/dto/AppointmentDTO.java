@@ -13,11 +13,11 @@ public class AppointmentDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	@NotBlank(message = "Campo obrigatório")
+
 	private LocalDateTime dateTime;
-	@NotBlank(message = "Campo obrigatório")
+
 	private UserDTO barber;
-	@NotBlank(message = "Campo obrigatório")
+
 	private UserDTO client;
 	
 	public AppointmentDTO() {}

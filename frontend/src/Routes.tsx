@@ -4,6 +4,7 @@ import Navbar from "components/Navbar";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
 import MyAppointments from "pages/MyAppointments";
+import NewAppointment from "pages/NewAppointment";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import { hasAnyRoles } from "util/auth";
 
@@ -27,13 +28,11 @@ const Routes = () => {
                     </Route>
                 )}
 
-                <Route path="/teams/team/:teamId">
-                    <div style={{display:"flex", alignItems:"center", justifyContent:"center", padding:"20px"}}>
-
-                    </div>
-                </Route>
-
-
+                {hasAnyRoles(['ROLE_CLIENT']) && (
+                    <Route path="/newappointment" exact>
+                        <NewAppointment/>
+                    </Route>
+                )}
 
                 <Redirect from='/auth' to='/auth/login' exact />
                 <Route path="/auth">
@@ -43,12 +42,6 @@ const Routes = () => {
                 <Redirect from="/admin" to="/admin/teams" exact />
                 <Route path="/admin">
 
-                </Route>
-
-                <Route path="/profile" exact>
-                    <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-
-                    </div>
                 </Route>
 
             </Switch>

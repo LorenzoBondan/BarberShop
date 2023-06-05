@@ -10,13 +10,7 @@ import AppointmentCard from './AppointmentCard';
 import Filter from 'components/Filter';
 import moment from 'moment';
 
-type ControlComponentsData = {
-  filterData: FilterData;
-}
-
 const MyAppointments = () => {
-
-
 
      // getting the email
      const { authContextData, setAuthContextData } = useContext(AuthContext);
@@ -56,7 +50,7 @@ const MyAppointments = () => {
         const response = await requestBackend(params);
         setUser(response.data);
       } catch (error) {
-        // Trate o erro de requisição aqui
+        console.log("error: " + error);
       }
     }, []);
  
@@ -112,7 +106,6 @@ const MyAppointments = () => {
     useEffect(() => {
       getAppointmentsByDate();
     }, [getAppointmentsByDate]);
-
 
     return(
         <div className='my-appointments-container'>
