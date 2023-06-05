@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projects.University.dto.AppointmentDTO;
 import com.projects.University.dto.RoleDTO;
 import com.projects.University.dto.UserDTO;
 import com.projects.University.dto.UserInsertDTO;
@@ -148,9 +149,9 @@ public class UserService implements UserDetailsService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<LocalDateTime> findReservedDatesForBarberOnDate(Long barberId, LocalDateTime startTime, LocalDateTime endTime) {
+	public List<AppointmentDTO> findReservedDatesForBarberOnDate(Long barberId, LocalDateTime startTime, LocalDateTime endTime) {
 		User user = repository.getOne(barberId);
-		List<LocalDateTime> list = appointmentRepository.findReservedDatesByBarberAndDate(user, startTime, endTime);
+		List<AppointmentDTO> list = appointmentRepository.findReservedDatesByBarberAndDate(user, startTime, endTime);
 		return list;
 	}
 	

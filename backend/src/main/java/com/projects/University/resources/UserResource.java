@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.projects.University.dto.AppointmentDTO;
 import com.projects.University.dto.UserDTO;
 import com.projects.University.dto.UserInsertDTO;
 import com.projects.University.dto.UserUpdateDTO;
@@ -77,8 +78,8 @@ public class UserResource {
 	}
 	
 	@GetMapping(value = "/{id}/{startTime}/{endTime}") 
-	public ResponseEntity<List<LocalDateTime>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDateTime startTime, @PathVariable LocalDateTime endTime) {
-		List<LocalDateTime> list = service.findReservedDatesForBarberOnDate(id, startTime, endTime);
+	public ResponseEntity<List<AppointmentDTO>> findReservedDatesForBarberOnDate(@PathVariable Long id, @PathVariable LocalDateTime startTime, @PathVariable LocalDateTime endTime) {
+		List<AppointmentDTO> list = service.findReservedDatesForBarberOnDate(id, startTime, endTime);
 		return ResponseEntity.ok().body(list);
 	}
 }

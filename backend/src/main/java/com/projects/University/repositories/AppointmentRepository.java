@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.projects.University.dto.AppointmentDTO;
 import com.projects.University.entities.Appointment;
 import com.projects.University.entities.User;
 
@@ -18,6 +19,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
 
 	List<Appointment> findByDateTime(LocalDateTime dateTime);
 	
-	@Query("SELECT DISTINCT a.dateTime FROM Appointment a WHERE a.barber = :barber AND a.dateTime >= :startDateTime AND a.dateTime < :endDateTime")
-	List<LocalDateTime> findReservedDatesByBarberAndDate(@Param("barber") User barber, @Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
+	@Query("SELECT DISTINCT a FROM Appointment a WHERE a.barber = :barber AND a.dateTime >= :startDateTime AND a.dateTime < :endDateTime")
+	List<AppointmentDTO> findReservedDatesByBarberAndDate(@Param("barber") User barber, @Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
 }
