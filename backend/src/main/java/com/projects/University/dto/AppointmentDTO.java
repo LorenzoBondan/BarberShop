@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import javax.validation.constraints.NotBlank;
 
 import com.projects.University.entities.Appointment;
 
@@ -33,7 +32,7 @@ public class AppointmentDTO implements Serializable {
 	public AppointmentDTO(Appointment entity) {
 		super();
 		this.id = entity.getId();
-		this.dateTime = entity.getDateTime();
+		this.dateTime = entity.getDateTime().minusHours(3);
 		this.barber = new UserDTO(entity.getBarber());
 		this.client = new UserDTO(entity.getClient());
 	}

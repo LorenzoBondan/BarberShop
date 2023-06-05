@@ -23,7 +23,7 @@ public class Appointment implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime dateTime;
 	
 	@ManyToOne
