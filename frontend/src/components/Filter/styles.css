@@ -1,0 +1,24 @@
+.filter-main-container {
+    padding-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-input{
+    height: 45px;
+    width: 250px;
+    background-color: silver;
+    color: black;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 12px 5px 12px 20px;
+    margin-right: 54px;
+}
+
+.filter-input::placeholder{
+    color: #fff;
+}

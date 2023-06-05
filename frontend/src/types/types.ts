@@ -32,3 +32,7 @@ export type Appointment = {
     barber : User;
     client : User;
 }
+
+export type FilterData = {
+    dates : Date[];
+}
