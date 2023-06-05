@@ -1,0 +1,8 @@
+.appointment-card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    width: 250px;
+}

@@ -3,7 +3,9 @@ import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
+import MyAppointments from "pages/MyAppointments";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
+import { hasAnyRoles } from "util/auth";
 
 import history from "util/history";
 
@@ -19,11 +21,11 @@ const Routes = () => {
                     <Home/>
                 </Route>
 
-                <Route path="/teams" exact>
-                    <div style={{display:"flex", alignItems:"center", justifyContent:"center", padding:"20px"}}>
-
-                    </div>
-                </Route>
+                {hasAnyRoles(['ROLE_BARBER']) && (
+                    <Route path="/myappointments" exact>
+                        <MyAppointments/>
+                    </Route>
+                )}
 
                 <Route path="/teams/team/:teamId">
                     <div style={{display:"flex", alignItems:"center", justifyContent:"center", padding:"20px"}}>

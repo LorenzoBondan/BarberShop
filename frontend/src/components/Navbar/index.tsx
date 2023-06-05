@@ -89,12 +89,6 @@ const Navbar = () => {
                         </li>
                     )}
 
-                    <li>
-                        <NavLink to="/barbers" activeClassName='active' exact>
-                            Barbers
-                        </NavLink>
-                    </li>
-
                 </ul>
             </div>
 

@@ -36,6 +36,7 @@
 .banner-info-container{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .banner-info-title{
@@ -78,6 +79,22 @@
     border-radius: 100px;
     height: 50px;
     border: 2px solid white;
+}
+
+.banner-calendar-and-hours{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.banner-calendar-and-hours p {
+    color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-shadow: none;
+    font-style: italic;
+    margin-bottom: 0;
 }
 
 .options-column{

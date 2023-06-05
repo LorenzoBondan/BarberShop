@@ -3,6 +3,9 @@ import './styles.css';
 import background from 'assets/images/background.png';
 import logo from 'assets/images/logo.png';
 import OptionsCard from 'components/OptionsCard';
+import { FiCalendar } from 'react-icons/fi';
+import { FiClock } from 'react-icons/fi';
+
 
 const Banner = () => {
 
@@ -38,6 +41,10 @@ const Banner = () => {
                     <button className='btn btn-primary'>
                         Make your reservation
                     </button>
+                    <div className='banner-calendar-and-hours'>
+                        <p><FiCalendar/> Monday - Saturday</p>
+                        <p><FiClock/> 9:00 AM - 7:00 PM</p>
+                    </div>
                 </div>
             </div>
 
