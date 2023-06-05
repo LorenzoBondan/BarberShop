@@ -118,11 +118,12 @@ const MyAppointments = () => {
         <div className='my-appointments-container'>
             <h1>{user?.name}'s Appointments</h1>
             <div className='my-appointments-filter'>
+                <h6>Select the date period</h6>
                 <Filter onFilterChange={onFilterChange} />
             </div>
             <div className='row' style={{width:"100%"}}>
                 {appointmentData?.map(appointment => (
-                    <div className="col-sm-12 col-lg-4 col-xl-3 options-column" key={appointment.id}>
+                    <div className="col-sm-12 col-lg-4 col-xl-2 options-column" key={appointment.id}>
                         <AppointmentCard appointmentId={appointment.id} />
                     </div>
                 ))}

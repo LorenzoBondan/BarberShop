@@ -6,3 +6,25 @@
     padding: 20px;
     width: 100%;
 }
+
+.my-appointments-container h1{
+    color: #E74946;
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.my-appointments-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.my-appointments-filter h6 {
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+}

@@ -10,15 +10,15 @@
 .filter-input{
     height: 45px;
     width: 250px;
-    background-color: silver;
-    color: black;
+    background-color: #fff;
+    color: #E74946;
+    font-weight: 700;
     font-size: 16px;
-    border: 1px solid black;
+    border: 1px solid silver;
     border-radius: 10px;
     padding: 12px 5px 12px 20px;
-    margin-right: 54px;
 }
 
 .filter-input::placeholder{
-    color: #fff;
+    color: silver;
 }
