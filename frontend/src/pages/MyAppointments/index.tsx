@@ -10,7 +10,13 @@ import AppointmentCard from './AppointmentCard';
 import Filter from 'components/Filter';
 import moment from 'moment';
 
+type ControlComponentsData = {
+  filterData: FilterData;
+}
+
 const MyAppointments = () => {
+
+
 
      // getting the email
      const { authContextData, setAuthContextData } = useContext(AuthContext);
@@ -39,32 +45,35 @@ const MyAppointments = () => {
      
      const [user, setUser] = useState<User>();
  
-     const getUser = useCallback(() => {
-         const params : AxiosRequestConfig = {
-           method:"GET",
-           url: `/users/email/${email}`,
-           withCredentials:true
-         }
-         requestBackend(params) 
-           .then(response => {
-             setUser(response.data);
-           })
-     }, [])
+     const getUser = useCallback(async () => {
+      try {
+        const params: AxiosRequestConfig = {
+          method: "GET",
+          url: `/users/email/${email}`,
+          withCredentials: true
+        };
+    
+        const response = await requestBackend(params);
+        setUser(response.data);
+      } catch (error) {
+        // Trate o erro de requisição aqui
+      }
+    }, []);
  
      useEffect(() => {
          getUser();
      }, [getUser]);
  
      /**/
-     const [appointmentData, setAppointmentData] = useState<Appointment[]>();
+
+     const [appointmentData, setAppointmentData] = useState<Appointment[]>([]);
 
      const [filterData, setFilterData] = useState<FilterData>();
 
      const onFilterChange = (filter: FilterData) => {
       setFilterData(filter);
       getAppointmentsByDate();
-      getUser();
-    }
+    };
 
     const convertFormatData = useCallback((data: string | undefined): string | undefined => {
       if (data) {
@@ -79,7 +88,6 @@ const MyAppointments = () => {
 
     const getAppointmentsByDate = useCallback(() => {
       if (user?.id && filterData?.dates) {
-        console.log("entrou");
         const formattedDate1 = convertFormatData(filterData.dates[0]?.toString());
         const formattedDate2 = convertFormatData(filterData.dates[1]?.toString());
       
@@ -89,7 +97,7 @@ const MyAppointments = () => {
             url: `/users/${user.id}/${formattedDate1}/${formattedDate2}`,
             withCredentials: true
           }
-      
+    
           requestBackend(params)
             .then(response => {
               setAppointmentData(response.data);
@@ -101,6 +109,10 @@ const MyAppointments = () => {
       }
     }, [user?.id, filterData?.dates, convertFormatData]);
 
+    useEffect(() => {
+      getAppointmentsByDate();
+    }, [getAppointmentsByDate]);
+
 
     return(
         <div className='my-appointments-container'>
@@ -110,7 +122,7 @@ const MyAppointments = () => {
             </div>
             <div className='row' style={{width:"100%"}}>
                 {appointmentData?.map(appointment => (
-                    <div className="col-sm-12 col-lg-4 col-xl-6 options-column" key={appointment.id}>
+                    <div className="col-sm-12 col-lg-4 col-xl-3 options-column" key={appointment.id}>
                         <AppointmentCard appointmentId={appointment.id} />
                     </div>
                 ))}

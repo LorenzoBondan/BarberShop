@@ -13,12 +13,11 @@ const Filter = ({onFilterChange} : Props) => {
     const [dates, setDates] = useState<Date[]>([]);
 
     const onChangeDate = (dates: Date[]) => {
-        if (dates.length === 2 ){ // se já selecionou data final e inicial
+        if (dates.length === 2 ){
             setDates(dates);
             onFilterChange( {dates} );
         }
     };
-
 
     return(
         <div className='filter-container'>
@@ -29,7 +28,7 @@ const Filter = ({onFilterChange} : Props) => {
                 options={{
                     mode: 'range', 
                     dateFormat: 'd/m/Y',
-                    showMonths: 2
+                    showMonths: 1
                 }}
             />
         </div>
