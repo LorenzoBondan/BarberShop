@@ -9,11 +9,14 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.projects.University.dto.AppointmentDTO;
 import com.projects.University.entities.Appointment;
+import com.projects.University.entities.User;
 import com.projects.University.repositories.AppointmentRepository;
 import com.projects.University.repositories.UserRepository;
 import com.projects.University.services.exceptions.DataBaseException;
@@ -68,14 +71,14 @@ public class AppointmentService {
 	}
 	
 	 public void saveAppointment(Appointment appointment) {
-	     validateReservation(appointment.getDateTime());
+	     validateReservation(appointment.getBarber(), appointment.getDateTime(), appointment.getDateTime());
 	     repository.save(appointment);
 	 }
 	    
-	 private void validateReservation(LocalDateTime dateTime) {
-	     List<Appointment> existingAppointments = repository.findByDateTime(dateTime);
+	 private void validateReservation(User barber, LocalDateTime startTime, LocalDateTime endTime) {
+	     List<AppointmentDTO> existingAppointments = repository.findReservedDatesByBarberAndDate(barber, startTime, endTime);
 	     if (!existingAppointments.isEmpty()) {
-	    	 throw new IllegalArgumentException("Horário já reservado. Escolha outro horário.");
+	    	 throw new ResponseStatusException(HttpStatus.CONFLICT, "Horário já reservado. Escolha outro horário.");
 	     }
 	 }
 

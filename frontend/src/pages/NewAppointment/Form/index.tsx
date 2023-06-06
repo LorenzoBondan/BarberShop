@@ -66,8 +66,8 @@ const Form = ({client} : Props) => {
         history.push('/');
       })
       .catch(error => {
-        if (error.response && error.response.data) {
-          setAlertMessage(error.response.data.message);
+        if (error.response && error.response.status === 409) {
+          setAlertMessage('This time slot is already booked. Please choose another one.');
         } else {
           setAlertMessage('An error occurred while processing the request.');
         }
@@ -220,7 +220,7 @@ const Form = ({client} : Props) => {
                               />
                           </div>
 
-                          {alertMessage && <label>This time is already busy. Choose another one.</label>}
+                          {alertMessage && <p className="error-message">{alertMessage}</p>}
                         </div>
                     </div>
                 </div>
