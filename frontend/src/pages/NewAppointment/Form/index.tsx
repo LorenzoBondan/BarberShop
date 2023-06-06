@@ -113,7 +113,6 @@ const Form = ({client} : Props) => {
       const [barberImage, setBarberImage] = useState<User>();
 
       const getBarberImage = useCallback( (barberId : number | undefined) => {
-        console.log("barberId: " + barberId);
         const params : AxiosRequestConfig = {
           method:"GET",
           url: `/users/${barberId}`
@@ -146,11 +145,11 @@ const Form = ({client} : Props) => {
                 <div className='new-appointment-inputs-container'>
 
                     <div className="new-appointment-barber-container">
+                        <h3>Choose your favorite Barber</h3>
                         {barberImage && 
                             <img id="barberImage" alt="" />
                         }
-                        <div className='margin-bottom-30'>
-                            <label htmlFor="" style={{color:"white"}}>Barber</label> 
+                        <div className='margin-bottom-30 barber-select'>
                                 <Controller 
                                     name = 'barber'
                                     rules = {{required: true}}
@@ -159,7 +158,7 @@ const Form = ({client} : Props) => {
                                         <Select 
                                             {...field}
                                             options={selectBarbers}
-                                            classNamePrefix="users-crud-select"
+                                            classNamePrefix="barber-select"
                                             placeholder="Barber"
                                             getOptionLabel={(user: User) => user.name}
                                             getOptionValue={(user: User) => user.id.toString()}
@@ -178,35 +177,41 @@ const Form = ({client} : Props) => {
                     </div>
 
                     <div className="new-appointment-time-container">
-                        <div className='margin-bottom-30'>
-                            <label>Time</label>
-                            <select value={dateTimeHour} onChange={(e) => handleDateTimeChangeHour(e.target.value)}>
-                            <option value="">Select one time</option>
-                            {timeOptions.map((time, index) => (
-                                <option key={index} value={time}>
-                                    {time}
-                                </option>
-                            ))}
-                            </select>
-                        </div>
+                      <div className="new-appointment-time-title"> 
+                        <h3>Choose the best time for you</h3>
+                      </div>
+                      <div className="new-appointment-time-inputs">
+                          <div className='margin-bottom-30'>
+                              <label>Time</label>
+                              <select value={dateTimeHour} onChange={(e) => handleDateTimeChangeHour(e.target.value)} className="base-input time-input">
+                              <option value="">Select one time</option>
+                              {timeOptions.map((time, index) => (
+                                  <option key={index} value={time}>
+                                      {time}
+                                  </option>
+                              ))}
+                              </select>
+                          </div>
 
-                        <div className='margin-bottom-30'>
-                            <label>Date</label>
-                            <FlatPicker
-                            value={dateTimeDay}
-                            onChange={(selectedDateTime: Date[]) => handleDateTimeChangeDay(selectedDateTime)}
-                            options={{
-                                enableTime: true,
-                                dateFormat: 'Y-m-d',
-                            }}
-                            />
+                          <div className='margin-bottom-30'>
+                              <label>Date</label>
+                              <FlatPicker
+                              value={dateTimeDay}
+                              onChange={(selectedDateTime: Date[]) => handleDateTimeChangeDay(selectedDateTime)}
+                              options={{
+                                  enableTime: true,
+                                  dateFormat: 'Y-m-d',
+                              }}
+                              className="base-input time-input"
+                              />
+                          </div>
                         </div>
                     </div>
                 </div>
 
                 <div className='new-appointment-buttons-container'>
                         <button 
-                            className='btn btn-outline-danger new-appointment-buttons'
+                            className='btn btn-outline-danger new-appointment-buttons btn-secondary'
                             onClick={handleCancel}
                             >
                             CANCEL

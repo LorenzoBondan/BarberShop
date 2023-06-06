@@ -43,6 +43,10 @@ ul {
   height: 40px;
   border: #9E9E9E 1px solid;
 }
+
+.base-input:hover{
+  cursor: pointer;
+}
   
   
   .base-input::placeholder {

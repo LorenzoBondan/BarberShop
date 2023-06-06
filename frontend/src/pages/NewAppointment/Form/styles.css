@@ -9,6 +9,113 @@
 .new-appointment-inputs-container{
     display: flex;
     flex-direction: row;
+    width: 600px;
+}
+
+.new-appointment-barber-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    padding-right: 20px;
+    border-right: 3px solid silver;
+    width: 50%;
+}
+
+.new-appointment-barber-container h3, .new-appointment-time-title h3{
+    font-family: 'Dancing Script';
+    font-size: 26px;
+    color: #FFDC8D;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px black;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.new-appointment-barber-container img{
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid silver;
+    margin-bottom: 20px;
+}
+
+.margin-bottom-30{
+    margin-bottom: 30px;
+}
+
+.barber-select{
+    width: 250px;
+}
+
+.new-appointment-time-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 50%;
+}
+
+.new-appointment-time-title{
+    width: 100%;
+}
+
+.new-appointment-time-container label{
+    margin-right: 7px;
+    font-weight: 700;
+    color: #E74946;
+}
+
+.time-input{
+    width: 200px;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+}
+
+.new-appointment-time-inputs{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
+.new-appointment-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-top: 3px solid silver;
+    padding-top: 10px;
+}
+
+.new-appointment-buttons-container button{
+    width: 49%;
+    font-weight: 700;
+}
+
+.flatpickr-month, .flatpickr-current-month, .flatpickr-monthDropdown-months, .flatpickr-weekdays, .flatpickr-weekdaycontainer, .flatpickr-weekday, .selected, .flatpickr-monthDropdown-month {
+    background-color: #E74946 !important; /* Defina a cor de fundo desejada */
+    color: #fff !important;  
+  }
+
+  .selected{
+    border: #fff 1px solid !important; 
+  }
+
+  .flatpickr-calendar {
+    background-color: #E74946 !important;
+    color: #333;
+  }
+  
+  .flatpickr-day {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+
+  .flatpickr-time{
+    display: none;
+  }
