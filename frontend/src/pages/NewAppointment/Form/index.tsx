@@ -1,12 +1,14 @@
 import { AxiosRequestConfig } from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Appointment, User } from "types/types";
 import { requestBackend } from "util/requests";
-import Select from 'react-select';
+import Select, { ActionMeta } from 'react-select';
 import FlatPicker from 'react-flatpickr';
 import "flatpickr/dist/themes/material_green.css";
+
+import './styles.css';
 
 type Props = {
     client: User;
@@ -39,8 +41,6 @@ const Form = ({client} : Props) => {
             return fullDayHour;
           };
 
-        console.log("TEMPO CORRETO: " + correctTime(dateTimeDay, dateTimeHour));
-
         formData.dateTime = new Date(correctTime(dateTimeDay, dateTimeHour));
 
         const params : AxiosRequestConfig = {
@@ -54,10 +54,7 @@ const Form = ({client} : Props) => {
             .then(response => {
                 console.log('Sucesso', response.data);
                 history.push("/");
-            })
-            .catch(() => {
-                //toast.error('Erro ao cadastrar o User.');
-            })
+        })
     };
 
     const handleCancel = () => {
@@ -110,14 +107,48 @@ const Form = ({client} : Props) => {
           setDateTimeHour(selectedDateTime);
         }
       };
-    
-    
 
+      /**/
+
+      const [barberImage, setBarberImage] = useState<User>();
+
+      const getBarberImage = useCallback( (barberId : number | undefined) => {
+        console.log("barberId: " + barberId);
+        const params : AxiosRequestConfig = {
+          method:"GET",
+          url: `/users/${barberId}`
+        }
+        requestBackend(params) 
+          .then(response => {
+            setBarberImage(response.data);
+          })
+      }, [])
+
+    useEffect(() => {
+      if (barberImage) {
+        const img = new Image();
+        img.src = barberImage.imgUrl;
+        img.onload = () => {
+          const barberImageElement = document.getElementById('barberImage') as HTMLImageElement;
+          if (barberImageElement) {
+            barberImageElement.src = barberImage.imgUrl;
+          }
+        };
+        img.onerror = () => {
+          console.error('Error when trying to load the barber image');
+        };
+      }
+    }, [barberImage]);
+    
     return(
         <div className="form-container">
             <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='row post-crud-inputs-container'>
+                <div className='new-appointment-inputs-container'>
 
+                    <div className="new-appointment-barber-container">
+                        {barberImage && 
+                            <img id="barberImage" alt="" />
+                        }
                         <div className='margin-bottom-30'>
                             <label htmlFor="" style={{color:"white"}}>Barber</label> 
                                 <Controller 
@@ -132,6 +163,11 @@ const Form = ({client} : Props) => {
                                             placeholder="Barber"
                                             getOptionLabel={(user: User) => user.name}
                                             getOptionValue={(user: User) => user.id.toString()}
+                                            onChange={(selectedOption: User | null, actionMeta: ActionMeta<User>) => {
+                                              if (selectedOption && actionMeta.action === 'select-option') {
+                                                getBarberImage(selectedOption.id);
+                                              }
+                                            }}
                                         />    
                                     )}
                                 />
@@ -139,7 +175,9 @@ const Form = ({client} : Props) => {
                                     <div className='invalid-feedback d-block'>Campo obrigatório</div>
                                 )}
                         </div>
+                    </div>
 
+                    <div className="new-appointment-time-container">
                         <div className='margin-bottom-30'>
                             <label>Time</label>
                             <select value={dateTimeHour} onChange={(e) => handleDateTimeChangeHour(e.target.value)}>
@@ -159,21 +197,22 @@ const Form = ({client} : Props) => {
                             onChange={(selectedDateTime: Date[]) => handleDateTimeChangeDay(selectedDateTime)}
                             options={{
                                 enableTime: true,
-                                dateFormat: 'Y-m-d H:i',
+                                dateFormat: 'Y-m-d',
                             }}
                             />
                         </div>
+                    </div>
+                </div>
 
-                        <div className='post-crud-buttons-container'>
-                            <button 
-                                className='btn btn-outline-danger post-crud-buttons'
-                                onClick={handleCancel}
-                                >
-                                CANCEL
-                            </button>
+                <div className='new-appointment-buttons-container'>
+                        <button 
+                            className='btn btn-outline-danger new-appointment-buttons'
+                            onClick={handleCancel}
+                            >
+                            CANCEL
+                        </button>
 
-                            <button className='btn btn-primary text-white post-crud-buttons'>SAVE</button>
-                        </div>
+                        <button className='btn btn-primary text-white new-appointment-buttons'>SAVE</button>
                     </div>
                 </form>
         </div>

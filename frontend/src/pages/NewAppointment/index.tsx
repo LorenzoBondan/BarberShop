@@ -56,9 +56,7 @@ const NewAppointment = () => {
          }, [getUser]);
      
          /**/
-
-
-
+         
     return(
         <div className="new-appointment-container">
             <h1>New Appointment</h1>

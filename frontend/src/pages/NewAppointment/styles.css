@@ -1,6 +1,16 @@
 .new-appointment-container{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 20px;
+}
+
+.new-appointment-container h1{
+    color: #E74946;
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 20px;
 }
