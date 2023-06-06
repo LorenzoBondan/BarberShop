@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -15,129 +15,149 @@ type Props = {
 }
 
 const Form = ({client} : Props) => {
+  
+  const { handleSubmit, formState: { errors }, control } = useForm<Appointment>();
+  const history = useHistory();
+  const [selectBarbers, setSelectBarbers] = useState<User[]>([]);
+  const [selectedBarber, setSelectedBarber] = useState<User | null>(null);
+  const [dateTimeDay, setDateTimeDay] = useState('');
+  const [dateTimeHour, setDateTimeHour] = useState('');
+  const [barberImage, setBarberImage] = useState<string | null>(null);
+  const [alertMessage, setAlertMessage] = useState('');
 
-    const { handleSubmit, formState: {errors}, control } = useForm<Appointment>();
+  useEffect(() => {
+    requestBackend({ url: '/users/barbers', withCredentials: true })
+      .then(response => {
+        setSelectBarbers(response.data.content);
+      });
+  }, []);
 
-    const history = useHistory();
+  const onSubmit = (formData: Appointment) => {
 
-    const [selectBarbers, setSelectBarbers] = useState<User[]>();
+    formData.client = client;
 
-    useEffect(() => {
-        requestBackend({url: '/users/barbers', withCredentials: true})
-            .then(response => {
-                setSelectBarbers(response.data.content)
-        })
-    }, []);
-
-    const onSubmit = (formData : Appointment) => {
-
-        formData.client = client;
-
-        const correctTime = (dateTimeDay: string, dateTimeHour: string): string => {
-            const day = dateTimeDay.substring(0, 11);
-            const hour = dateTimeHour + ":00";
-
-            const fullDayHour = day + hour;
-            return fullDayHour;
-          };
-
-        formData.dateTime = new Date(correctTime(dateTimeDay, dateTimeHour));
-
-        const params : AxiosRequestConfig = {
-            method: "POST",
-            url : "/appointments",
-            data: formData,
-            withCredentials: true
-        };
-
-        requestBackend(params)
-            .then(response => {
-                console.log('Sucesso', response.data);
-                history.push("/");
-        })
-    };
-
-    const handleCancel = () => {
-        history.push("/")
+    if (!selectedBarber) {
+      setAlertMessage('Please choose a barber.');
+      return;
     }
 
-    const timeOptions = [
-        '09:00', '09:30',
-        '10:00', '10:30',
-        '11:00', '11:30',
-        '13:30',
-        '14:00', '14:30',
-        '15:00', '15:30',
-        '16:00', '16:30',
-        '17:00', '17:30',
-        '18:00', '18:30',
-        '19:00'
-      ];
+    formData.barber = selectedBarber;
 
-      const [dateTimeDay, setDateTimeDay] = useState('');
+    const correctTime = (dateTimeDay: string, dateTimeHour: string): string => {
+      const day = dateTimeDay.substring(0, 11);
+      const hour = dateTimeHour + ':00';
 
-      const [dateTimeHour, setDateTimeHour] = useState('');
+      const fullDayHour = day + hour;
+      return fullDayHour;
+    };
 
-      const handleDateTimeChangeDay = (selectedDateTime: string | Date[]) => {
-        if (Array.isArray(selectedDateTime)) {
-          // É um array de datas (vem do FlatPicker)
-          if (selectedDateTime.length > 0) {
-            const selectedDate = selectedDateTime[0];
-            setDateTimeDay(selectedDate.toISOString());
-          } else {
-            setDateTimeDay('');
-          }
+    formData.dateTime = new Date(correctTime(dateTimeDay, dateTimeHour));
+
+    const params: AxiosRequestConfig = {
+      method: 'POST',
+      url: '/appointments',
+      data: formData,
+      withCredentials: true,
+    };
+
+    requestBackend(params)
+      .then(response => {
+        console.log('Success', response.data);
+        history.push('/');
+      })
+      .catch(error => {
+        if (error.response && error.response.data) {
+          setAlertMessage(error.response.data.message);
         } else {
-          // É uma string (vem do select)
-          setDateTimeDay(selectedDateTime);
+          setAlertMessage('An error occurred while processing the request.');
         }
-      };
+      });
+  };
 
-      const handleDateTimeChangeHour = (selectedDateTime: string | Date[]) => {
-        if (Array.isArray(selectedDateTime)) {
-          // É um array de datas (vem do FlatPicker)
-          if (selectedDateTime.length > 0) {
-            const selectedDate = selectedDateTime[0];
-            setDateTimeDay(selectedDate.toISOString());
-          } else {
-            setDateTimeDay('');
-          }
-        } else {
-          // É uma string (vem do select)
-          setDateTimeHour(selectedDateTime);
-        }
-      };
+  const handleCancel = () => {
+    history.push('/');
+  };
 
-      /**/
+  const timeOptions = [
+    '09:00', '09:30',
+    '10:00', '10:30',
+    '11:00', '11:30',
+    '13:30',
+    '14:00', '14:30',
+    '15:00', '15:30',
+    '16:00', '16:30',
+    '17:00', '17:30',
+    '18:00', '18:30',
+    '19:00'
+  ];
 
-      const [barberImage, setBarberImage] = useState<User>();
-
-      const getBarberImage = useCallback( (barberId : number | undefined) => {
-        const params : AxiosRequestConfig = {
-          method:"GET",
-          url: `/users/${barberId}`
-        }
-        requestBackend(params) 
-          .then(response => {
-            setBarberImage(response.data);
-          })
-      }, [])
-
-    useEffect(() => {
-      if (barberImage) {
-        const img = new Image();
-        img.src = barberImage.imgUrl;
-        img.onload = () => {
-          const barberImageElement = document.getElementById('barberImage') as HTMLImageElement;
-          if (barberImageElement) {
-            barberImageElement.src = barberImage.imgUrl;
-          }
-        };
-        img.onerror = () => {
-          console.error('Error when trying to load the barber image');
-        };
+  const handleDateTimeChangeDay = (selectedDateTime: string | Date[]) => {
+    if (Array.isArray(selectedDateTime)) {
+      if (selectedDateTime.length > 0) {
+        const selectedDate = selectedDateTime[0];
+        setDateTimeDay(selectedDate.toISOString());
+      } else {
+        setDateTimeDay('');
       }
-    }, [barberImage]);
+    } else {
+      setDateTimeDay(selectedDateTime);
+    }
+  };
+
+  const handleDateTimeChangeHour = (selectedDateTime: string | Date[]) => {
+    if (Array.isArray(selectedDateTime)) {
+      if (selectedDateTime.length > 0) {
+        const selectedHour = selectedDateTime[0].toString().substring(16, 21);
+        setDateTimeHour(selectedHour);
+      } else {
+        setDateTimeHour('');
+      }
+    } else {
+      setDateTimeHour(selectedDateTime);
+    }
+  };
+
+  const getBarberImage = useCallback(async (barberId: number | undefined) => {
+    if (barberId) {
+      try {
+        const response: AxiosResponse<User> = await axios.get(`http://localhost:8080/users/${barberId}`);
+        setBarberImage(response.data.imgUrl);
+        setSelectedBarber(response.data);
+      } catch (error) {
+        console.error('Error when trying to load the barber image:', error);
+      }
+    } else {
+      setBarberImage(null);
+      setSelectedBarber(null);
+    }
+  }, []);
+
+  const handleBarberSelect = useCallback(async (selectedOption: User | null, actionMeta: ActionMeta<User>) => {
+    if (selectedOption) {
+      setSelectedBarber(selectedOption);
+      getBarberImage(selectedOption.id);
+    } else {
+      setSelectedBarber(null);
+      setBarberImage(null);
+    }
+  }, [getBarberImage]);
+
+  useEffect(() => {
+    if (barberImage) {
+      const img = new Image();
+      img.src = barberImage;
+      img.onload = () => {
+        const barberImageElement = document.getElementById('barberImage') as HTMLImageElement;
+        if (barberImageElement) {
+          barberImageElement.src = barberImage;
+        }
+      };
+      img.onerror = () => {
+        console.error('Error when trying to load the barber image');
+      };
+    }
+  }, [barberImage]);
+
     
     return(
         <div className="form-container">
@@ -150,29 +170,23 @@ const Form = ({client} : Props) => {
                             <img id="barberImage" alt="" />
                         }
                         <div className='margin-bottom-30 barber-select'>
-                                <Controller 
-                                    name = 'barber'
-                                    rules = {{required: true}}
-                                    control = {control}
-                                    render = {( {field} ) => (
-                                        <Select 
-                                            {...field}
-                                            options={selectBarbers}
-                                            classNamePrefix="barber-select"
-                                            placeholder="Barber"
-                                            getOptionLabel={(user: User) => user.name}
-                                            getOptionValue={(user: User) => user.id.toString()}
-                                            onChange={(selectedOption: User | null, actionMeta: ActionMeta<User>) => {
-                                              if (selectedOption && actionMeta.action === 'select-option') {
-                                                getBarberImage(selectedOption.id);
-                                              }
-                                            }}
-                                        />    
-                                    )}
-                                />
-                                {errors.barber && (
-                                    <div className='invalid-feedback d-block'>Campo obrigatório</div>
-                                )}
+                          <Controller
+                            name="barber"
+                            control={control}
+                            render={({ field }) => (
+                              <Select
+                                {...field}
+                                options={selectBarbers}
+                                getOptionLabel={(option: User) => option.name}
+                                getOptionValue={(option: User) => String(option.id)}
+                                isSearchable
+                                placeholder="Select a barber"
+                                onChange={handleBarberSelect}
+                                value={selectedBarber}
+                              />
+                            )}
+                          />
+                            <div className='invalid-feedback d-block'>{errors.barber?.message}</div>
                         </div>
                     </div>
 
@@ -205,19 +219,19 @@ const Form = ({client} : Props) => {
                               className="base-input time-input"
                               />
                           </div>
+
+                          {alertMessage && <label>This time is already busy. Choose another one.</label>}
                         </div>
                     </div>
                 </div>
 
                 <div className='new-appointment-buttons-container'>
-                        <button 
-                            className='btn btn-outline-danger new-appointment-buttons btn-secondary'
-                            onClick={handleCancel}
-                            >
+                        <button className='btn btn-outline-danger new-appointment-buttons btn-secondary' onClick={handleCancel}>
                             CANCEL
                         </button>
-
-                        <button className='btn btn-primary text-white new-appointment-buttons'>SAVE</button>
+                        <button className="btn btn-primary text-white new-appointment-buttons" type="submit">
+                          SAVE
+                        </button>
                     </div>
                 </form>
         </div>
