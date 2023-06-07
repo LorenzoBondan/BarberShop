@@ -19,6 +19,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
 
 	List<Appointment> findByDateTime(LocalDateTime dateTime);
 	
-	@Query("SELECT DISTINCT a FROM Appointment a WHERE a.barber = :barber AND a.dateTime >= :startDateTime AND a.dateTime <= :endDateTime")
+	@Query("SELECT DISTINCT a FROM Appointment a WHERE a.barber = :barber AND a.dateTime >= :startDateTime AND a.dateTime <= :endDateTime ORDER BY a.dateTime")
 	List<AppointmentDTO> findReservedDatesByBarberAndDate(@Param("barber") User barber, @Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
 }
