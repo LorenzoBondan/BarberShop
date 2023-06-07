@@ -1,6 +1,7 @@
 
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
+import Admin from "pages/Admin";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
 import MyAppointments from "pages/MyAppointments";
@@ -39,10 +40,14 @@ const Routes = () => {
                     <Auth/>
                 </Route>
 
-                <Redirect from="/admin" to="/admin/teams" exact />
-                <Route path="/admin">
-
-                </Route>
+                {hasAnyRoles(['ROLE_ADMIN']) && (
+                    <>
+                    <Redirect from="/admin" to="/admin/users" exact />
+                    <Route path="/admin">
+                        <Admin/>
+                    </Route>
+                    </>
+                )}
 
             </Switch>
 
