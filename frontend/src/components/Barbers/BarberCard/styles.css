@@ -5,7 +5,11 @@
     justify-content: center;
     border-radius: 5px !important;
     background-color: rgba(0, 0, 0, 0.35) !important;
-    
+}
+
+.barber-card-container:hover{
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
 }
 
 .barber-card-first-container{

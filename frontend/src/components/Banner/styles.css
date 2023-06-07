@@ -82,6 +82,11 @@
     width: 100%;
 }
 
+.banner-button:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
 .banner-calendar-and-hours{
     display: flex;
     justify-content: space-evenly;

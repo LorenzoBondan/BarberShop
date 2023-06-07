@@ -11,6 +11,11 @@
     background-color: rgba(255, 220, 141, 0.75) !important;
 }
 
+.options-card-container:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
 .options-card-container img{
     height: 100px;
     margin-bottom: 15px;
