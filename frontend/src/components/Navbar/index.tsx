@@ -47,7 +47,7 @@ const Navbar = () => {
                 <div className='navbar-brand'>
                     <img src={logo} alt="logo" />
                 </div>
-                <h4>BARBER SHOP</h4>
+                <h4>Barber Shop</h4>
             </Link>
 
             <button

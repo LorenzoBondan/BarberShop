@@ -5,6 +5,8 @@ import logo from 'assets/images/logo.png';
 import OptionsCard from 'components/OptionsCard';
 import { FiCalendar } from 'react-icons/fi';
 import { FiClock } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { hasAnyRoles } from 'util/auth';
 
 
 const Banner = () => {
@@ -38,9 +40,19 @@ const Banner = () => {
                     <span>Beer, Friends and a good Hair Cut</span>
                     <h1 className='banner-info-title'><img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" /><div className='barber-word'>Barber</div><div className='shop-word'>Shop</div><img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" /></h1>
                     <p>The best barber shop in the city</p>
-                    <button className='btn btn-primary'>
-                        Make your reservation
-                    </button>
+                    {hasAnyRoles(['ROLE_CLIENT']) ? (
+                        <Link to="/newappointment">
+                            <button className='btn btn-primary banner-button'>
+                                Make your reservation
+                            </button>
+                        </Link>
+                    ) : (
+                        <Link to="/auth">
+                            <button className='btn btn-primary banner-button'>
+                                Make your reservation
+                            </button>
+                        </Link>
+                    )}
                     <div className='banner-calendar-and-hours'>
                         <p><FiCalendar/> Monday - Saturday</p>
                         <p><FiClock/> 9:00 AM - 7:00 PM</p>
