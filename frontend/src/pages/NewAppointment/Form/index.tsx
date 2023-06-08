@@ -6,7 +6,6 @@ import { Appointment, User } from "types/types";
 import { requestBackend } from "util/requests";
 import Select, { ActionMeta } from 'react-select';
 import FlatPicker from 'react-flatpickr';
-import "flatpickr/dist/themes/material_green.css";
 
 import './styles.css';
 

@@ -1,3 +1,19 @@
-.edit-profile-form-container{
+.post-card-form-card{
     padding: 20px;
+    color: #E74946;
+}
+
+.post-card-form-card h1{
+    font-weight: 700;
+    color: #E74946;
+    text-shadow: 1px 1px 1px black;
+}
+
+.post-crud-buttons-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-crud-buttons{
+    width: 50%;
 }

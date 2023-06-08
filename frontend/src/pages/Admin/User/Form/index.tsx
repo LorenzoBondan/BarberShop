@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { Role } from 'types/types';
 import { User } from 'types/types';
 import { requestBackend } from 'util/requests';
-
+import './styles.css';
 
 type UrlParams = {
     userId: string;
@@ -29,12 +29,9 @@ const Form = () => {
 
                     setValue('name', user.name);
                     setValue('imgUrl', user.imgUrl);
-    
-                    // not editable values
                     setValue('password', user.password);
                     setValue('email', user.email);
                     setValue('roles', user.roles);
-
                 })
         }
         
@@ -76,9 +73,8 @@ const Form = () => {
     }
 
     return(
-        <div className="edit-profile-form-container">
             <div className="base-card post-card-form-card">
-                <h1>Edit Profile</h1>
+                <h1>Add or Edit Profile</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row post-crud-inputs-container'>
@@ -98,6 +94,37 @@ const Form = () => {
                                 <div className='invalid-feedback d-block'>{errors.name?.message}</div>
                             </div>
 
+                            <div className='margin-bottom-30'>
+                                <label htmlFor="">Password</label>
+                                <input 
+                                    {...register("password", {
+                                    required: false,
+                                    })}
+                                    type="text"
+                                    className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+                                    placeholder="Password"
+                                    name="password"
+                                />
+                                <div className='invalid-feedback d-block'>{errors.password?.message}</div>
+                            </div>
+
+                            <div className='margin-bottom-30'>
+                                <label htmlFor="">Email</label>
+                                <input 
+                                    {...register("email", {
+                                    pattern: { 
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: 'Insira um Email válido'
+                                        }
+                                    })}
+                                    type="text"
+                                    className={`form-control base-input ${errors.email ? 'is-invalid' : ''}`}
+                                    placeholder="Email"
+                                    name="email"
+                                />
+                                <div className='invalid-feedback d-block'>{errors.email?.message}</div>
+                            </div>
+
                         </div>
 
                         <div className='margin-bottom-30'>
@@ -112,7 +139,7 @@ const Form = () => {
                                     })}
                                     type="text"
                                     className={`form-control base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
-                                    placeholder="URL of course's image"
+                                    placeholder="URL of user's image"
                                     name="imgUrl"
                                 />
                                 <div className='invalid-feedback d-block'>{errors.imgUrl?.message}</div>
@@ -143,7 +170,7 @@ const Form = () => {
 
                         <div className='post-crud-buttons-container'>
                             <button 
-                                className='btn btn-outline-danger post-crud-buttons'
+                                className='btn btn-outline-secondary post-crud-buttons'
                                 onClick={handleCancel}
                                 >
                                 CANCEL
@@ -155,7 +182,6 @@ const Form = () => {
                 </form>
             
             </div>
-        </div>
     );
 }
 

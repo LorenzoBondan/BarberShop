@@ -97,7 +97,7 @@
     font-weight: 700;
 }
 
-.flatpickr-month, .flatpickr-current-month, .flatpickr-monthDropdown-months, .flatpickr-weekdays, .flatpickr-weekdaycontainer, .flatpickr-weekday, .selected, .flatpickr-monthDropdown-month {
+.flatpickr-month, .flatpickr-current-month, .flatpickr-monthDropdown-months, .flatpickr-weekdays, .flatpickr-weekdaycontainer, .flatpickr-weekday, .flatpickr-monthDropdown-month {
     background-color: #E74946 !important; /* Defina a cor de fundo desejada */
     color: #fff !important;  
   }

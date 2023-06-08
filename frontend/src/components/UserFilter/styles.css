@@ -82,6 +82,10 @@
 
 @media(min-width:992px){
 
+    .user-filter-container{
+        width: 600px;
+    }
+
     .btn-user-filter-word{
         display: unset;
     }

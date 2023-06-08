@@ -26,11 +26,6 @@
     
 }
 
-.selected, .pagination-link-active{
-    border-radius: 50% !important;
-    width: 40px;
-    height: 40px;
-}
 
 .pagination-item:hover{
     color: #FFDC8D !important;

@@ -29,7 +29,7 @@ const List = () => {
           url: "/users",
           params: {
             page: controlComponentsData.activePage,
-            size: 2,
+            size: 6,
     
             name: controlComponentsData.filterData.name
           },
