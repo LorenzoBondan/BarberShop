@@ -15,5 +15,11 @@
 }
 
 .post-crud-buttons{
-    width: 50%;
+    width: 49%;
+}
+
+@media(min-width:768px){
+    .post-card-form-card{
+        width: 50%;
+    }
 }

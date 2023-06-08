@@ -8,6 +8,7 @@ import Select, { ActionMeta } from 'react-select';
 import FlatPicker from 'react-flatpickr';
 
 import './styles.css';
+import { toast } from 'react-toastify';
 
 type Props = {
     client: User;
@@ -63,6 +64,7 @@ const Form = ({client} : Props) => {
       .then(response => {
         console.log('Success', response.data);
         history.push('/');
+        toast.success("Appointment reserved with success!");
       })
       .catch(error => {
         if (error.response && error.response.status === 409) {
@@ -225,7 +227,7 @@ const Form = ({client} : Props) => {
                 </div>
 
                 <div className='new-appointment-buttons-container'>
-                        <button className='btn btn-outline-danger new-appointment-buttons btn-secondary' onClick={handleCancel}>
+                        <button className='btn new-appointment-buttons btn-secondary' onClick={handleCancel}>
                             CANCEL
                         </button>
                         <button className="btn btn-primary text-white new-appointment-buttons" type="submit">

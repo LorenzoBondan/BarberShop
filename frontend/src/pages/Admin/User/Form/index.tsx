@@ -8,6 +8,7 @@ import { Role } from 'types/types';
 import { User } from 'types/types';
 import { requestBackend } from 'util/requests';
 import './styles.css';
+import { toast } from 'react-toastify';
 
 type UrlParams = {
     userId: string;
@@ -41,7 +42,6 @@ const Form = () => {
 
     const [selectRoles, setSelectRoles] = useState<Role[]>();
 
-    //trazer os roles pra povoar o combobox
     useEffect(() => {
         requestBackend({url: '/roles', params: {page: 0, size: 50, }, withCredentials: true})
             .then(response => {
@@ -60,11 +60,12 @@ const Form = () => {
 
         requestBackend(params)
             .then(response => {
-                console.log('Sucesso', response.data);
+                console.log('Success', response.data);
                 history.push("/admin/users");
+                toast.success("Success!");
             })
             .catch(() => {
-                //toast.error('Erro ao cadastrar o User.');
+                toast.error('Error');
             })
     };
 
@@ -75,7 +76,6 @@ const Form = () => {
     return(
             <div className="base-card post-card-form-card">
                 <h1>Add or Edit Profile</h1>
-
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row post-crud-inputs-container'>
                         <div className='post-crud-inputs-left-container'>
@@ -146,7 +146,7 @@ const Form = () => {
                         </div>
 
                         <div className='margin-bottom-30'>
-                            <label htmlFor="" style={{color:"white"}}>Roles</label> 
+                            <label htmlFor="">Roles</label> 
                                 <Controller 
                                     name = 'roles'
                                     rules = {{required: true}}
@@ -180,7 +180,6 @@ const Form = () => {
                         </div>
                     </div>
                 </form>
-            
             </div>
     );
 }
