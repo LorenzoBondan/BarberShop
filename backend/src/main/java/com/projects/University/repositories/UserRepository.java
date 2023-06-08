@@ -16,4 +16,8 @@ public interface UserRepository extends JpaRepository<User,Long>{
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM tb_user WHERE id IN (SELECT user_id FROM tb_user_role WHERE role_id = 2)")
 	Page<User> findBarbers(Pageable pageable);
+	
+	@Query("SELECT DISTINCT obj FROM User obj "
+			+ "WHERE (UPPER(obj.name) LIKE UPPER(CONCAT('%', :name, '%')) ) ORDER BY obj.name")
+	Page<User> find(String name, Pageable pageable);
 }
