@@ -19,7 +19,7 @@
 }
 
 .banner-image-container img{
-    height: 400px;
+    height: 550px;
 }
 
 .banner-content-container{
@@ -28,9 +28,8 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: rgba(0, 0, 0, 0.2) !important;
-    border: 1px solid white;
     margin-bottom: 50px;
+    width: 100%;
 }
 
 .banner-info-container{
@@ -43,23 +42,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    color: black;
-    font-size: 68px;
+    font-family: "Playfair Display";
+    font-size: 100px;
+    line-height: 110px;
+    font-weight: 900;
 }
 
 .banner-info-title img{
-    height: 55px;
+    height: 75px;
 }
 
 .barber-word{
-    color: #E74946;
+    color: #bf9456;
     text-shadow: 1px 1px 1px black;
+    font-family: "Playfair Display";
 }
 
 .shop-word{
-    color: #3896E8;
-    text-shadow: 1px 1px 1px black;
+    color: #121212;
+    text-shadow: 1px 1px 1px #bf9456;
+    font-family: "Playfair Display";
 }
 
 .banner-info-container p{
@@ -72,6 +74,13 @@
     text-shadow: 1px 1px 1px black;
 }
 
+.banner-info-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .banner-button{
     color: #FFF !important;
     font-size: 20px !important;
@@ -79,7 +88,7 @@
     border-radius: 100px !important;
     height: 50px !important;
     border: 2px solid white !important;
-    width: 100%;
+    width: 500px;
 }
 
 .banner-button:hover{
@@ -94,9 +103,9 @@
 }
 
 .banner-calendar-and-hours p {
-    color: white;
+    color: black;
     font-family: 'Tajawal', sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 20px;
     text-shadow: none;
     font-style: italic;

@@ -57,5 +57,6 @@
 }
 
 .location-container img{
-    height: 40px;
+    height: 35px;
+    margin-right: 8px;
 }

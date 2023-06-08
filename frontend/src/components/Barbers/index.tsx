@@ -29,8 +29,9 @@ const Barbers = () => {
 
     return(
         <div className="barbers-container">
-            <h1 className='barbers-title'><img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" />Meet our Barbers<img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" /></h1>
+            <h1 className='barbers-title'>Meet our Barbers</h1>
             <span className='separator'></span>
+            <p>With more than 10 years of experience in the market and a highly qualified team, we are ready to serve you in the best possible way!</p>
             <div className='barbers-row'>
                 <div className='row'>
                     {page?.content

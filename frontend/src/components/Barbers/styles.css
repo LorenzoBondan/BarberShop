@@ -20,7 +20,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    margin-top: 20px;
 }
 
 .barbers-column{
@@ -35,4 +34,12 @@
 
 .barbers-title img{
     height: 40px;
+}
+
+.barbers-container p {
+    margin-top: 20px;
+    text-align: center;
+    color: #dbdbdb;
+    font-size: 18px;
+    font-style: italic;
 }

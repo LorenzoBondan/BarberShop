@@ -80,7 +80,7 @@ function Footer() {
           </MDBRow>
           <MDBRow>
             <div className="footer-download-zone">
-              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/BarberShop"><p style={{color:"#E74946"}}>https://github.com/LorenzoBondan/BarberShop</p></a>
+              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/BarberShop"><p style={{color:"#bf9456"}}>https://github.com/LorenzoBondan/BarberShop</p></a>
             </div>
           </MDBRow>
         </MDBContainer>

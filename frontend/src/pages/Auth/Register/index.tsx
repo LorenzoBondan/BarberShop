@@ -32,7 +32,7 @@ const RegisterForm = () => {
     };
 
     const handleCancel = () => {
-        history.push("/home")
+        history.push("/")
     }
 
     return(
