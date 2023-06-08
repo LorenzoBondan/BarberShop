@@ -4,6 +4,7 @@ import './styles.css';
 import Barbers from 'components/Barbers';
 import Location from 'components/Location';
 import AboutUs from 'components/AboutUs';
+import PriceTable from 'components/PriceTable';
 
 const Home = () => {
     return(
@@ -16,6 +17,9 @@ const Home = () => {
             </div>
             <div className='home-container-barbers'>
                 <Barbers/>
+            </div>
+            <div className='home-container-barbers'>
+                <PriceTable/>
             </div>
             <div className='home-container-location'>
                 <Location/>

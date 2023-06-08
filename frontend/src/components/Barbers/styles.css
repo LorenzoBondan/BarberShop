@@ -20,12 +20,17 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    margin-top: 20px;
 }
 
 .barbers-column{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.barbers-title{
+    margin-bottom: 20px;
 }
 
 .barbers-title img{

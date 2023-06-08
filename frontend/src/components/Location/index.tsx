@@ -14,10 +14,11 @@ const Location = () => {
     return(
         <div className="location-container">
             <h1><img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" />How to get here?<img src="https://em-content.zobj.net/thumbs/160/apple/354/barber-pole_1f488.png" alt="" /></h1>
-
+            <span className='separator'></span>
             <div className='location-content-container'>
                 <div className='location-adress-container'>
-                    <h4><MdLocationPin/>{location}</h4>
+                    <h4><MdLocationPin/>Miami, Florida</h4>
+                    <h5>200 SE 1st St Suite 102</h5>
                 </div>
                 <div className='location-map-container'>
                     <MapContainer center={initialPosition} zoom={15} scrollWheelZoom={true}>
