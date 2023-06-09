@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 880px;
+    height: 600px;
 }
 
 .banner-info-container span{
     font-family: 'Dancing Script';
-    font-size: 25px;
+    font-size: 14px;
     color: #FFDC8D;
     text-align: center;
     font-style: italic;
@@ -18,13 +18,13 @@
     margin-bottom: 10px;
 }
 
-.banner-image-container img{
-    height: 550px;
+.banner-image-container{
+    display: none;
 }
 
 .banner-content-container{
     display: flex;
-    padding:30px;
+    padding: 10px;
     align-items: center;
     flex-direction: row;
     justify-content: space-evenly;
@@ -43,13 +43,13 @@
     align-items: center;
     justify-content: center;
     font-family: "Playfair Display";
-    font-size: 100px;
+    font-size: 40px;
     line-height: 110px;
     font-weight: 900;
 }
 
 .banner-info-title img{
-    height: 75px;
+    height: 35px;
 }
 
 .barber-word{
@@ -69,7 +69,8 @@
     font-weight: 700;
     font-family: 'Dancing Script';
     text-align: center;
-    font-size: 30px;
+    font-style: italic;
+    font-size: 20px;
     margin-bottom: 50px;
     text-shadow: 1px 1px 1px black;
 }
@@ -83,12 +84,12 @@
 
 .banner-button{
     color: #FFF !important;
-    font-size: 20px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     border-radius: 100px !important;
     height: 50px !important;
     border: 2px solid white !important;
-    width: 500px;
+    width: 250px;
 }
 
 .banner-button:hover{
@@ -106,7 +107,7 @@
     color: black;
     font-family: 'Tajawal', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 12px;
     text-shadow: none;
     font-style: italic;
     margin-bottom: 0;
@@ -116,4 +117,69 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media(min-width:576px){
+    .banner-info-container span{
+        font-size: 25px;
+    }
+
+    .banner-info-title{
+        font-size: 70px;
+    }
+
+    .banner-info-title img{
+        height: 50px;
+    }
+
+    .banner-info-container p{
+        font-size: 30px;
+    }
+
+    .banner-button{
+        font-size: 20px !important;
+        width: 450px;
+    }
+
+    .banner-calendar-and-hours p {
+        font-size: 18px;
+    }
+}
+
+@media(min-width:768px){
+
+    .banner-info-title{
+        font-size: 100px;
+    }
+
+    .banner-info-title img{
+        height: 75px;
+    }
+
+    .banner-button{
+        font-size: 20px !important;
+        width: 500px;
+    }
+
+    .banner-calendar-and-hours p {
+        font-size: 20px;
+    }
+}
+
+@media(min-width:1200px){
+    .banner-container{
+        height: 880px;
+    }
+
+    .banner-image-container{
+        display: unset;
+    }
+    
+    .banner-image-container img{
+        height: 550px;
+    }
+    
+    .banner-content-container{
+        padding: 30px;
+    }
 }
