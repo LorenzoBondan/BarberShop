@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     background-color: #e1e1e1;
-    padding: 30px;
+    padding: 60px 30px;
 }
 
 .prices-table-title{
@@ -13,6 +13,10 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+}
+
+.prices-table-title img{
+    margin-bottom: 20px;
 }
 
 .prices-table-title h4{
