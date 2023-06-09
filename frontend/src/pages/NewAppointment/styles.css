@@ -11,6 +11,12 @@
     color: #E74946;
     text-shadow: 1px 1px 1px black;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 30px;
     margin-bottom: 20px;
+}
+
+@media(min-width:578px){
+    .new-appointment-container h1{
+        font-size: 48px;
+    }
 }

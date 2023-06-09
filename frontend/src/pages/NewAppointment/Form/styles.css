@@ -8,8 +8,8 @@
 
 .new-appointment-inputs-container{
     display: flex;
-    flex-direction: row;
-    width: 600px;
+    flex-direction: column;
+    width: 260px;
 }
 
 .new-appointment-barber-container{
@@ -18,9 +18,9 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    padding-right: 20px;
-    border-right: 3px solid silver;
-    width: 50%;
+    padding-bottom: 20px;
+    border-bottom: 3px solid silver;
+    width: 100%;
 }
 
 .new-appointment-barber-container h3, .new-appointment-time-title h3{
@@ -57,7 +57,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    width: 50%;
+    width: 100%;
 }
 
 .new-appointment-time-title{
@@ -100,27 +100,49 @@
 .flatpickr-month, .flatpickr-current-month, .flatpickr-monthDropdown-months, .flatpickr-weekdays, .flatpickr-weekdaycontainer, .flatpickr-weekday, .flatpickr-monthDropdown-month {
     background-color: #E74946 !important; /* Defina a cor de fundo desejada */
     color: #fff !important;  
-  }
+}
 
-  .selected{
+.selected{
     border: #fff 1px solid !important; 
-  }
+}
 
-  .flatpickr-calendar {
+.flatpickr-calendar {
     background-color: #E74946 !important;
     color: #333;
-  }
+}
   
-  .flatpickr-day {
+.flatpickr-day {
     background-color: #f0f0f0;
     color: #333;
-  }
+}
 
-  .flatpickr-time{
+.flatpickr-time{
     display: none;
-  }
+}
 
-  .error-message {
+.error-message {
     color: red;
     margin-top: 5px;
-  }
+}
+
+@media(min-width:768px){
+
+    .new-appointment-inputs-container{
+        flex-direction: row;
+        width: 600px;
+    }
+    
+    .new-appointment-barber-container{
+        padding-bottom: 0;
+        border-bottom: none;
+        padding: 10px;
+        padding-right: 20px;
+        border-right: 3px solid silver;
+        width: 50%;
+    }
+    
+    .new-appointment-time-container{
+        width: 50%;
+    }
+    
+}
