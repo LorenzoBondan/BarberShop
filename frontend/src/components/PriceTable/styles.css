@@ -1,10 +1,10 @@
 .prices-table-container{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #e1e1e1;
-    padding: 60px 30px;
+    padding: 60px 10px;
 }
 
 .prices-table-title{
@@ -25,13 +25,13 @@
     color: black;
     text-shadow: 1px 1px 1px white;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 32px;
 }
 
 .prices-table-title p{
     text-align: center;
     color: #535353;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 20px;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .prices-table-border{
-    padding: 20px;
+    padding: 10px;
     background-color: black;
     border-radius: 20px;
     box-shadow: 0px 4px 20px rgba(0,0,0,0.8);
@@ -52,9 +52,10 @@
 .prices-table{
     box-shadow: 0px 4px 20px rgba(0,0,0,0.8);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 850px;
+    width: 270px;
     align-self: center;
 }
 
@@ -72,7 +73,6 @@
 
 .prices-table tbody td {
     height: 70px;
-
     font-size: 18px;
     transition: background .3s; /* "animação" ao passar o mouse por cima */
     padding: 0 30px;
@@ -94,11 +94,63 @@
     width: auto !important;
     display: flex;
     align-items: center;
+    font-size: 14px !important;
 }
 
 .product-price{
-    font-size: 14px !important;
+    font-size: 12px !important;
     width: auto !important;
     display: flex;
     align-items: center;
+}
+
+@media(min-width:576px){
+
+    .prices-table-title{
+        padding: 20px;
+    }
+    
+    .prices-table-title h4{
+        font-size: 40px;
+    }
+    
+    .prices-table-title p{
+        font-size: 18px;
+    }
+    
+    .prices-table-border{
+        padding: 20px;
+    }
+    
+    .prices-table{
+        width: 450px;
+    }
+    
+    .prices-table tbody td {
+        height: 70px;
+        font-size: 18px;
+        width: 400px;
+    }
+    
+    .product-name{
+        font-size: 14px !important;
+    }
+    
+    .product-price{
+        font-size: 14px !important;
+    }
+}
+
+@media(min-width:992px){
+    .prices-table{
+        flex-direction: row;
+        width: 850px;
+    }
+}
+
+@media(min-width:1200px){
+    .prices-table-container{
+        flex-direction: row-reverse;
+        padding: 60px 30px;
+    }
 }
