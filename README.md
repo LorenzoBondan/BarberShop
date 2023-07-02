@@ -13,20 +13,20 @@ This is a BarberShop where clients can create new appointments with their prefer
 ![home4](https://github.com/LorenzoBondan/BarberShop/assets/105743965/997c21cc-6ba9-47e7-b985-015f0dd1117d)
 
 #### New Appointment (Client view)
-![newappointment](https://github.com/LorenzoBondan/BarberShop/assets/105743965/6c9f4506-9832-46a5-897b-5db38f9411b7)
+![newappointment](https://github.com/LorenzoBondan/BarberShop/assets/105743965/6cb50160-1b82-43af-a6a7-aea9bd65becb)
 
 #### My Appointments (Barber view)
-![myappointments](https://github.com/LorenzoBondan/BarberShop/assets/105743965/33230690-8a4f-4ee2-bc23-086ead549674)
+![myappointments](https://github.com/LorenzoBondan/BarberShop/assets/105743965/d3e43aff-0f34-4dd1-82b1-2be622c3a9e3)
 
 #### Admin CRUD page
-![admin](https://github.com/LorenzoBondan/BarberShop/assets/105743965/361f7709-9f79-483f-ba66-753169aba45e)
+![admin](https://github.com/LorenzoBondan/BarberShop/assets/105743965/05924bf3-44be-419d-8df9-a7e342f975b2)
 
 #### Admin editing form
-![admin-crud](https://github.com/LorenzoBondan/BarberShop/assets/105743965/5c2ad490-9b31-4721-9bf4-df1bd1227d64)
+![admin-crud](https://github.com/LorenzoBondan/BarberShop/assets/105743965/c37d2445-a79e-4815-9415-c9c8c12baebf)
 
 #### Login and register forms
-![login](https://github.com/LorenzoBondan/BarberShop/assets/105743965/95868d62-c723-43a7-805c-b5ff140ef550)
-![register](https://github.com/LorenzoBondan/BarberShop/assets/105743965/1305fc10-99a9-48de-8d56-6216adf297f8)
+![login](https://github.com/LorenzoBondan/BarberShop/assets/105743965/09e3166c-bdbb-41e3-9c6d-81765a7e299b)
+![register](https://github.com/LorenzoBondan/BarberShop/assets/105743965/d5925680-867b-496b-8fb7-f290a6acaacb)
 
 ## Class Diagram
 ![class diagram](https://github.com/LorenzoBondan/BarberShop/assets/105743965/05b52d3f-028c-4264-b6d3-4c3145717e4c)
@@ -41,6 +41,7 @@ This is a BarberShop where clients can create new appointments with their prefer
 - React
 - CSS
 
+Spring Boot v4.15.3 | Node v14.18.2
 
 ## Author
 
