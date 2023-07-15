@@ -1,8 +1,6 @@
-
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './styles.css';
-import { AuthContext } from 'AuthContext';
-import { getTokenData, isAuthenticated } from 'util/auth';
+import { getTokenData } from 'util/auth';
 import { Appointment, FilterData, User } from 'types/types';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
@@ -12,64 +10,43 @@ import moment from 'moment';
 
 const MyAppointments = () => {
 
-     // getting the email
-     const { authContextData, setAuthContextData } = useContext(AuthContext);
+  const [user, setUser] = useState<User | null>(null);
 
-     useEffect(() => {
-         if(isAuthenticated()){
-           setAuthContextData({
-             authenticated: true,
-             tokenData: getTokenData()
-           })
-         }
-         else{
-           setAuthContextData({
-             authenticated: false,
-           })
-         }
-     }, [setAuthContextData]);
- 
-     let email: string;
- 
-     authContextData.authenticated && (
-         authContextData.tokenData?.user_name && (
-         email = authContextData.tokenData?.user_name)) 
-     
-     // then, getting the user Id by email
-     
-     const [user, setUser] = useState<User>();
- 
-     const getUser = useCallback(async () => {
+  const getUser = useCallback(async () => {
       try {
-        const params: AxiosRequestConfig = {
-          method: "GET",
-          url: `/users/email/${email}`,
-          withCredentials: true
-        };
-    
-        const response = await requestBackend(params);
-        setUser(response.data);
-      } catch (error) {
-        console.log("error: " + error);
+          const email = getTokenData()?.user_name;
+
+          if (email) {
+              const params: AxiosRequestConfig = {
+              method: "GET",
+              url: `/users/email/${email}`,
+              withCredentials: true,
+          };
+
+          const response = await requestBackend(params);
+          setUser(response.data);
       }
-    }, []);
+      } catch (error) {
+          console.log("Error: " + error);
+      }
+  }, []);
+
+  useEffect(() => {
+      getUser();
+  }, [getUser]);
  
-     useEffect(() => {
-         getUser();
-     }, [getUser]);
- 
-     /**/
+  /**/
 
-     const [appointmentData, setAppointmentData] = useState<Appointment[]>([]);
+  const [appointmentData, setAppointmentData] = useState<Appointment[]>([]);
 
-     const [filterData, setFilterData] = useState<FilterData>();
+  const [filterData, setFilterData] = useState<FilterData>();
 
-     const onFilterChange = (filter: FilterData) => {
-      setFilterData(filter);
-      getAppointmentsByDate();
-    };
+  const onFilterChange = (filter: FilterData) => {
+    setFilterData(filter);
+    getAppointmentsByDate();
+  };
 
-    const convertFormatData = useCallback((data: string | undefined): string | undefined => {
+  const convertFormatData = useCallback((data: string | undefined): string | undefined => {
       if (data) {
         const dataMoment = moment(data, 'ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (zz)');
         if (dataMoment.isValid()) {
@@ -78,9 +55,9 @@ const MyAppointments = () => {
         }
       }
       return undefined;
-    }, []);
+  }, []);
 
-    const getAppointmentsByDate = useCallback(() => {
+  const getAppointmentsByDate = useCallback(() => {
       if (user?.id && filterData?.dates) {
         const formattedDate1 = convertFormatData(filterData.dates[0]?.toString());
         const formattedDate2 = convertFormatData(filterData.dates[1]?.toString());
@@ -101,11 +78,11 @@ const MyAppointments = () => {
             });
         }
       }
-    }, [user?.id, filterData?.dates, convertFormatData]);
+  }, [user?.id, filterData?.dates, convertFormatData]);
 
-    useEffect(() => {
-      getAppointmentsByDate();
-    }, [getAppointmentsByDate]);
+  useEffect(() => {
+    getAppointmentsByDate();
+  }, [getAppointmentsByDate]);
 
     return(
         <div className='my-appointments-container'>
@@ -121,7 +98,6 @@ const MyAppointments = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }

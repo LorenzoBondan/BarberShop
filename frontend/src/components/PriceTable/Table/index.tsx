@@ -1,4 +1,3 @@
-
 const Table = () => {
     return(
         <table className='prices-table'>

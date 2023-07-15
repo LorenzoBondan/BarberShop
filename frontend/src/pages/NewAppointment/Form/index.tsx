@@ -6,12 +6,11 @@ import { Appointment, User } from "types/types";
 import { requestBackend } from "util/requests";
 import Select, { ActionMeta } from 'react-select';
 import FlatPicker from 'react-flatpickr';
-
 import './styles.css';
 import { toast } from 'react-toastify';
 
 type Props = {
-    client: User;
+  client: User;
 }
 
 const Form = ({client} : Props) => {
@@ -159,7 +158,6 @@ const Form = ({client} : Props) => {
     }
   }, [barberImage]);
 
-    
     return(
         <div className="form-container">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -190,7 +188,6 @@ const Form = ({client} : Props) => {
                             <div className='invalid-feedback d-block'>{errors.barber?.message}</div>
                         </div>
                     </div>
-
                     <div className="new-appointment-time-container">
                       <div className="new-appointment-time-title"> 
                         <h3>Choose the best time for you</h3>
@@ -207,7 +204,6 @@ const Form = ({client} : Props) => {
                               ))}
                               </select>
                           </div>
-
                           <div className='margin-bottom-30'>
                               <label>Date</label>
                               <FlatPicker
@@ -225,7 +221,6 @@ const Form = ({client} : Props) => {
                         </div>
                     </div>
                 </div>
-
                 <div className='new-appointment-buttons-container'>
                         <button className='btn new-appointment-buttons btn-secondary' onClick={handleCancel}>
                             CANCEL

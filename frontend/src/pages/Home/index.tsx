@@ -1,4 +1,3 @@
-
 import Banner from 'components/Banner';
 import './styles.css';
 import Barbers from 'components/Barbers';

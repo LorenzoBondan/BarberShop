@@ -6,6 +6,7 @@ import UserCrudCard from "../UserCrudCard";
 import UserFilter, { UserFilterData } from "components/UserFilter";
 import Pagination from "components/Pagination";
 import { SpringPage, User } from "types/types";
+import './styles.css';
 
 type ControlComponentsData = {
     activePage: number;
@@ -48,42 +49,41 @@ const List = () => {
 
     const handleSubmitFilter = (data : UserFilterData) => {
         setControlComponentsData({activePage: 0, filterData: data});
-      }
+    }
 
     return(
         <div className='courses-crud-container'>
+          <div className="courses-crud-content">
             <div className="courses-crud-bar-container">
-                <Link to="/admin/users/create">
-                    <button className="btn btn-primary btn-crud-add" style={{color:"white", marginBottom:"20px"}}>
-                        ADD NEW USER
-                    </button>
-                </Link>
-            </div>
-
-            <div className='users-search-bar-container'>
-              <UserFilter onSubmitFilter={handleSubmitFilter} />
-            </div>
-
-            <div className='row'>
-                {page?.content
-                    .sort( (a,b) => a.name > b.name ? 1 : -1)
-                    .map((item) => (
-                        <div className="col-sm-4 col-md-4 col-lg-3 col-xl-2 user-crud-column" key={item.id}>
-                            <UserCrudCard user={item} onDelete={() => getUsers()} />
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div className='pagination-container'>
-              <Pagination 
-                pageCount={(page) ? page.totalPages : 0} 
-                range={2}
-                onChange={handlePageChange}
-                forcePage={page?.number}
-              />
-            </div>
-    </div>
+                  <Link to="/admin/users/create">
+                      <button className="btn btn-primary btn-crud-add" style={{color:"white", marginBottom:"20px"}}>
+                          ADD NEW USER
+                      </button>
+                  </Link>
+              </div>
+              <div className='users-search-bar-container'>
+                <UserFilter onSubmitFilter={handleSubmitFilter} />
+              </div>
+              <div className='row'>
+                  {page?.content
+                      .sort( (a,b) => a.name > b.name ? 1 : -1)
+                      .map((item) => (
+                          <div className="col-sm-4 col-md-4 col-lg-3 col-xl-2 user-crud-column" key={item.id}>
+                              <UserCrudCard user={item} onDelete={() => getUsers()} />
+                          </div>
+                      ))
+                  }
+              </div>
+          </div>
+          <div className='pagination-container'>
+            <Pagination 
+              pageCount={(page) ? page.totalPages : 0} 
+              range={2}
+              onChange={handlePageChange}
+              forcePage={page?.number}
+            />
+          </div>
+        </div>
     );
 }
 

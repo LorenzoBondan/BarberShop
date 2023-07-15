@@ -1,4 +1,3 @@
-
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Admin from "pages/Admin";
@@ -8,7 +7,6 @@ import MyAppointments from "pages/MyAppointments";
 import NewAppointment from "pages/NewAppointment";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import { hasAnyRoles } from "util/auth";
-
 import history from "util/history";
 
 const Routes = () => {
@@ -16,19 +14,15 @@ const Routes = () => {
     return(
         <Router history={history}> 
             <Navbar/>
-
             <Switch>
-
                 <Route path="/" exact>
                     <Home/>
                 </Route>
-
                 {hasAnyRoles(['ROLE_BARBER']) && (
                     <Route path="/myappointments" exact>
                         <MyAppointments/>
                     </Route>
                 )}
-
                 {hasAnyRoles(['ROLE_CLIENT']) && (
                     <Route path="/newappointment" exact>
                         <NewAppointment/>
@@ -39,7 +33,6 @@ const Routes = () => {
                 <Route path="/auth">
                     <Auth/>
                 </Route>
-
                 {hasAnyRoles(['ROLE_ADMIN']) && (
                     <>
                     <Redirect from="/admin" to="/admin/users" exact />
@@ -48,9 +41,7 @@ const Routes = () => {
                     </Route>
                     </>
                 )}
-
             </Switch>
-
             <Footer/>
         </Router>
     );

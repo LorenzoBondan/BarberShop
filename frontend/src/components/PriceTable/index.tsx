@@ -1,4 +1,3 @@
-
 import Table from './Table';
 import './styles.css';
 import icon from 'assets/images/razor.png';

@@ -1,4 +1,3 @@
-
 import './styles.css';
 import background from 'assets/images/background.png';
 import logo from 'assets/images/logo.png';
@@ -63,16 +62,12 @@ const Banner = () => {
                             </Link>
                         )}
                     </div>
-
                     <div className='banner-calendar-and-hours'>
                         <p><FiCalendar/> Monday - Saturday</p>
                         <p><FiClock/> 9:00 AM - 7:00 PM</p>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     );
 }

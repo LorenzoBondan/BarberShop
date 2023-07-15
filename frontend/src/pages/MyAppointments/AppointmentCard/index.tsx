@@ -1,4 +1,3 @@
-
 import { Appointment } from 'types/types';
 import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
@@ -52,7 +51,6 @@ const AppointmentCard = ({appointmentId} : Props) => {
       }
       return undefined;
     }, []);
-
 
     return(
         <div className='appointment-card-container'>

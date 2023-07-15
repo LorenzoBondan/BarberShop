@@ -7,7 +7,6 @@ import { useContext, useEffect } from 'react';
 import { getTokenData, hasAnyRoles, isAuthenticated } from 'util/auth';
 import { removeAuthData } from 'util/storage';
 import history from 'util/history';
-
 import './styles.css';
 
 const Navbar = () => {
@@ -49,7 +48,6 @@ const Navbar = () => {
                 </div>
                 <h4>Barber Shop</h4>
             </Link>
-
             <button
                     className="navbar-toggler"
                     type="button"
@@ -61,7 +59,6 @@ const Navbar = () => {
                 >
                 <span className='navbar-toggler-icon'></span>
             </button>
-
             <div className="collapse navbar-collapse" id="soccerleague-navbar">
                 <ul className='navbar-nav offset-md-4 main-menu'>
 
@@ -72,7 +69,6 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     )}
-
                     {hasAnyRoles(['ROLE_BARBER']) && (
                         <li>
                             <NavLink to="/myappointments" activeClassName='active'>
@@ -80,7 +76,6 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     )}
-
                     {hasAnyRoles(["ROLE_CLIENT"]) && (
                         <li>
                             <NavLink to="/newappointment" activeClassName='active'>
@@ -88,10 +83,8 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     )}
-
                 </ul>
             </div>
-
             <div className='nav-login-logout'>
                 { authContextData.authenticated ? (
                     <a href="#logout" onClick={handleLogoutClick}>LOGOUT</a>

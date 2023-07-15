@@ -1,4 +1,3 @@
-
 import './styles.css';
 
 const AboutUs = () => {
@@ -12,7 +11,6 @@ const AboutUs = () => {
             <div className='about-us-image-container'>
                 <img src="https://donmanera.com.br/site/wp-content/uploads/2021/08/barbearia.jpg" alt="" />
             </div>
-            
         </div>
     );
 }

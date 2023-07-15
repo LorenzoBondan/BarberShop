@@ -49,18 +49,17 @@ ul {
   cursor: pointer;
 }
   
-  
-  .base-input::placeholder {
-    color: #9E9E9E;
-  }
+.base-input::placeholder {
+  color: #9E9E9E;
+}
 
-  .form-control{
-    color: black !important;
-  }
+.form-control{
+  color: black !important;
+}
 
-  .leaflet-container{
-    width: 100%;
-    height: 300px; /* mudar se quiser */
+.leaflet-container{
+  width: 100%;
+  height: 300px; /* mudar se quiser */
 }
 
 @media(min-width:576px){
