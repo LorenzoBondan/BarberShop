@@ -19,7 +19,7 @@ This is a BarberShop where clients can create new appointments with their prefer
 ![myappointments](https://github.com/LorenzoBondan/BarberShop/assets/105743965/d3e43aff-0f34-4dd1-82b1-2be622c3a9e3)
 
 #### Admin CRUD page
-![admin](https://github.com/LorenzoBondan/BarberShop/assets/105743965/05924bf3-44be-419d-8df9-a7e342f975b2)
+![admin](https://github.com/LorenzoBondan/BarberShop/assets/105743965/361ffcaf-dab6-49f0-b25a-04dd94feb855)
 
 #### Admin editing form
 ![admin-crud](https://github.com/LorenzoBondan/BarberShop/assets/105743965/c37d2445-a79e-4815-9415-c9c8c12baebf)
@@ -34,7 +34,7 @@ This is a BarberShop where clients can create new appointments with their prefer
 ## Used technologies
 
 - Java
-- Spring
+- Spring Boot
 - SQL
 
 - TypeScript
